@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+
+        body {
+            background-color: gray;
+
+        }
+
+        .container {
+            width: 400px;
+
+            border: 1px solid black;
+            display: none;
+        }
+
+        .container-flex {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .line {
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            height: 30px;
+        }
+        .line:hover{
+            background-color: rgba(77, 77, 77, 0.457);
+        }
+
+
+        .name, .age, .andar, .data, .dia {
+            color: black;
+            width: 70px;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.582);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .age, .data{
+           
+        }
+      
+
+        button {
+            width: 200px;
+            height: 60px;
+        }
+        .input-container{
+            width: 600px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }     
+        .input-container > * {
+            width: 70%;
+            height: 30px;
+            border: 1px solid black;
+            background-color: rgb(83, 83, 83);
+            border-radius: 5px;
+            color: white;
+            padding-left: 10px;
+        }
+        #input-btn{
+            height: 60px;
+            position: relative;
+        }
+        #input-btn:hover{
+            top:2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="input-container">
+        <input id="input-nome" type="text" placeholder="nome">
+        <input id="input-documento" type="text" placeholder="documento">
+        <input id="input-andar" type="text" placeholder="andar">
+        <input id="input-hora" type="text" placeholder="hora">
+        <input id="input-data" type="text" placeholder="data">
+        <button id="input-btn">Adicionar dados</button>
+    </div>
+
+    <h1>Janeiro</h1>
+    <div class="container">
+        <h1>dia 01/01/2022</h1>
+
+    </div>
+
+    <select name="" id="">
+        <option id="dia-um">01</option>
+        <option id="dia-dois">03</option>
+        <option id="dia-tres">04</option>
+        <option id="dia-quatro">05</option>
+        <option id="dia-quinto">06</option>
+        <option id="dia-sexto">07</option>
+    </select>
+
+    <!--     <button id="dias-btn">mostrar dias</button> -->
+
+
+
+    <script>
+
+        const input_nome = document.querySelector('#input-nome')
+        const input_documento = document.querySelector('#input-documento')
+        const input_andar = document.querySelector('#input-andar')
+        const input_hora = document.querySelector('#input-hora')
+        const input_data = document.querySelector('#input-data')
+        
+
+        const container = document.querySelector('.container')
+        const container_flex = document.querySelector('.container-flex')
+        const dias_btn = document.querySelector('#dias-btn')
+
+        const dia1 = document.querySelector('#dia-um')
+        const dia2 = document.querySelector('#dia-dois')
+        const dia3 = document.querySelector('#dia-tres')
+        const dia4 = document.querySelector('#dia-quatro')
+        const dia5 = document.querySelector('#dia-quinto')
+        const dia6 = document.querySelector('#dia-sexto')
+
+        const input_btn = document.querySelector('#input-btn')
+
+
+
+        input_btn.addEventListener('click', ()=>{
+            const name = input_nome.value
+            const document = input_documento.value
+            const floor = input_andar.value
+            const hour = input_hora.value
+            const date = input_data.value
+
+            async  function postData(){
+                const res = await fetch('/api')
+                const data = await res.json()
+                const dia = data[0].dia
+
+                const person = dia[0]
+                console.log(person[0].name);
+            }
+            postData()
+            
+        })
+
+
+
+
+
+        dia1.addEventListener('click', () => {
+
+            async function getData() {
+                const response = await fetch('/api')
+                const data = await response.json()//receives data
+
+                for (item of data) {//Gets every item of object
+                    const meses = item.dia//dia
+                    const dia = meses[0]//dia 1
+                    container.style.display = 'block'
+
+                    for (pessoas of dia) {
+                        const name = document.createElement('div')
+                        const doc =  document.createElement('div')
+                        const andar = document.createElement('div')
+                        const hora =  document.createElement('div')
+                        const data =  document.createElement('div')
+                        const line = document.createElement('div')
+                        line.classList.add('line')
+                        name.classList.add('name')
+                        doc.classList.add('age')
+                        andar.classList.add('andar')
+                        hora.classList.add('dia')
+                        data.classList.add('data')
+
+                        name.textContent = pessoas.name
+                        doc.textContent = pessoas.cpf
+                        andar.textContent = pessoas.andar
+                        hora.textContent = pessoas.hora
+                        data.textContent = pessoas.data
+                       
+
+
+                       // p.textContent = pessoas.age
+    
+
+                         line.appendChild(name)
+                         line.appendChild(doc)
+                         line.appendChild(andar)
+                         line.appendChild(hora)
+                         line.appendChild(data)
+                        container.appendChild(line)
+                        console.log(pessoas.name);
+                    }
+                }
+            }
+            getData()
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*   const btn = document.querySelector('#btn')
+          
+       
+              async function getData() {
+                  const input_content = document.querySelector('#input').value
+                  //console.log(position);
+                  const test = [
+                      {
+                          name: 'weker',
+                          age: 21
+                      }
+                  ]
+  
+                  const data = 'dgf'
+                  const options = {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(test),
+                      info: JSON.stringify(input_content)
+                  }
+                  const response = await fetch('/api', options)
+                  const json = await response.json()
+  
+                  console.log(json)
+  
+  
+              }getData()
+   */
+
+
+    </script>
+
+
+</body>
+
+</html>
