@@ -36,12 +36,17 @@
             display: flex;
             height: 30px;
         }
-        .line:hover{
+
+        .line:hover {
             background-color: rgba(77, 77, 77, 0.457);
         }
 
 
-        .name, .age, .andar, .data, .dia {
+        .name,
+        .age,
+        .andar,
+        .data,
+        .dia {
             color: black;
             width: 70px;
             height: 100%;
@@ -51,24 +56,26 @@
             justify-content: center;
             font-size: 12px;
         }
-        .age, .data{
-           
-        }
-      
+
+        .age,
+        .data {}
+
 
         button {
             width: 200px;
             height: 60px;
         }
-        .input-container{
+
+        .input-container {
             width: 600px;
             border: 1px solid black;
             display: flex;
             flex-direction: column;
             gap: 20px;
             padding: 20px;
-        }     
-        .input-container > * {
+        }
+
+        .input-container>* {
             width: 70%;
             height: 30px;
             border: 1px solid black;
@@ -77,12 +84,14 @@
             color: white;
             padding-left: 10px;
         }
-        #input-btn{
+
+        #input-btn {
             height: 60px;
             position: relative;
         }
-        #input-btn:hover{
-            top:2px;
+
+        #input-btn:hover {
+            top: 2px;
             cursor: pointer;
         }
     </style>
@@ -127,7 +136,7 @@
         const input_andar = document.querySelector('#input-andar')
         const input_hora = document.querySelector('#input-hora')
         const input_data = document.querySelector('#input-data')
-        
+
 
         const container = document.querySelector('.container')
         const container_flex = document.querySelector('.container-flex')
@@ -144,23 +153,47 @@
 
 
 
-        input_btn.addEventListener('click', ()=>{
-            const name = input_nome.value
-            const document = input_documento.value
-            const floor = input_andar.value
-            const hour = input_hora.value
-            const date = input_data.value
+        input_btn.addEventListener('click', () => {
 
-            async  function postData(){
+            async function postData() {
+                const name = input_nome.value
+                const document = input_documento.value
+                const floor = input_andar.value
+                const hour = input_hora.value
+                const date = input_data.value
+
                 const res = await fetch('/api')
-                const data = await res.json()
-                const dia = data[0].dia
 
-                const person = dia[0]
-                console.log(person[0].name);
+
+
+                const data = {
+                    mês: 'janeiro', dia: [
+                        [//01
+                            {
+                                name: name,
+                                cpf: document,
+                                andar: floor,
+                                hora: hour,
+                                data: date
+                            }
+
+                        ]
+                    ]
+                }
+
+                const options = {
+                    method: "POST",
+                    body: JSON.stringify(data)
+            
+                }
+                console.log(options.body);
+                
+                fetch('/api', options)
+
+
             }
             postData()
-            
+
         })
 
 
@@ -180,10 +213,10 @@
 
                     for (pessoas of dia) {
                         const name = document.createElement('div')
-                        const doc =  document.createElement('div')
+                        const doc = document.createElement('div')
                         const andar = document.createElement('div')
-                        const hora =  document.createElement('div')
-                        const data =  document.createElement('div')
+                        const hora = document.createElement('div')
+                        const data = document.createElement('div')
                         const line = document.createElement('div')
                         line.classList.add('line')
                         name.classList.add('name')
@@ -197,17 +230,17 @@
                         andar.textContent = pessoas.andar
                         hora.textContent = pessoas.hora
                         data.textContent = pessoas.data
-                       
 
 
-                       // p.textContent = pessoas.age
-    
 
-                         line.appendChild(name)
-                         line.appendChild(doc)
-                         line.appendChild(andar)
-                         line.appendChild(hora)
-                         line.appendChild(data)
+                        // p.textContent = pessoas.age
+
+
+                        line.appendChild(name)
+                        line.appendChild(doc)
+                        line.appendChild(andar)
+                        line.appendChild(hora)
+                        line.appendChild(data)
                         container.appendChild(line)
                         console.log(pessoas.name);
                     }
