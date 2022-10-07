@@ -6,310 +6,939 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0px;
-        }
-
-        body {
-            background-color: gray;
-
-        }
-
-        .container {
-            width: 400px;
-
-            border: 1px solid black;
-            display: none;
-        }
-
-        .container-flex {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .line {
-            width: 100%;
-            border: 1px solid black;
-            display: flex;
-            height: 30px;
-        }
-
-        .line:hover {
-            background-color: rgba(77, 77, 77, 0.457);
-        }
-
-
-        .name,
-        .age,
-        .andar,
-        .data,
-        .dia {
-            color: black;
-            width: 70px;
-            height: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.582);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .age,
-        .data {}
-
-
-        button {
-            width: 200px;
-            height: 60px;
-        }
-
-        .input-container {
-            width: 600px;
-            border: 1px solid black;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .input-container>* {
-            width: 70%;
-            height: 30px;
-            border: 1px solid black;
-            background-color: rgb(83, 83, 83);
-            border-radius: 5px;
-            color: white;
-            padding-left: 10px;
-        }
-
-        #input-btn {
-            height: 60px;
-            position: relative;
-        }
-
-        #input-btn:hover {
-            top: 2px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-
-
 <body>
+    <div class="main-container">
+        <div class="input-container">
+            <h1>cadastrar visitante</h1>
+            <input id="input-nome" type="text" placeholder="nome">
+            <input id="input-documento" type="text" placeholder="documento">
+            <input id="input-andar" type="text" placeholder="andar">
+            <button id="input-btn">adicionar dados</button>
 
-    <div class="input-container">
-        <input id="input-nome" type="text" placeholder="nome">
-        <input id="input-documento" type="text" placeholder="documento">
-        <input id="input-andar" type="text" placeholder="andar">
-        <input id="input-hora" type="text" placeholder="hora">
-        <input id="input-data" type="text" placeholder="data">
-        <button id="input-btn">Adicionar dados</button>
+            <h3 id="weler">por <span>Weler</span></h2>
+        </div>
+        <div class="output-container">
+            <div class="output-filtro-container">
+                <h1>buscar visitante</h1>
+                <h2>selecionar data</h2>
+    
+                <div class="output-container-dia-mes">
+                    <select name="" id="select-mes">
+                        <option id="mes">Janeiro</option>
+                        <option id="mes">Fevereiro</option>
+                        <option id="mes">Março</option>
+                        <option id="mes">Abril</option>
+                        <option id="mes">Maio</option>
+                        <option id="mes">Junho</option>
+                        <option id="mes">Julho</option>
+                        <option id="mes">Agosto</option>
+                        <option id="mes">Setembro</option>
+                        <option id="mes">Outubro</option>
+                        <option id="mes">Novembro</option>
+                        <option id="mes">Dezembro</option>
+                    </select>
+                    <select id="select-dia">
+                        <option id="dia">todos dias</option>
+                        <option id="dia">1</option>
+                        <option id="dia">2</option>
+                        <option id="dia">3</option>
+                        <option id="dia">4</option>
+                        <option id="dia">5</option>
+                        <option id="dia">6</option>
+                        <option id="dia">7</option>
+                        <option id="dia">8</option>
+                        <option id="dia">9</option>
+                        <option id="dia">10</option>
+                    </select>
+                    <button id="procurar">Procurar</button>
+                </div>
+            </div>
+            <div class="output-screen">
+                <h3 id="output-h2">resultado</h3>
+
+                <div class="output-screen-container-titles">
+                    <div class="dia-title">dia</div>
+                    <div class="nome-title">nome</div>
+                    <div class="nome-title">documento</div>
+                    <div class="nome-title">andar</div>
+                    <div class="nome-title">hora</div>
+                    <div class="nome-title">data</div>
+
+                </div>
+                <!-- Colunas -->
+                <div class="colunas-container">
+                    <div id="col" class="output-col-dia"></div>
+                    <div id="col" class="output-col-nome"></div>
+                    <div id="col" class="output-col-documento"></div>
+                    <div id="col" class="output-col-andar"></div>
+                    <div id="col" class="output-col-hora"></div>
+                    <div id="col" class="output-col-data"></div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <h1>Janeiro</h1>
-    <div class="container">
-        <h1>dia 01/01/2022</h1>
-
-    </div>
-
-    <select name="" id="">
-        <option id="dia-um">01</option>
-        <option id="dia-dois">03</option>
-        <option id="dia-tres">04</option>
-        <option id="dia-quatro">05</option>
-        <option id="dia-quinto">06</option>
-        <option id="dia-sexto">07</option>
-    </select>
-
-    <!--     <button id="dias-btn">mostrar dias</button> -->
-
-
 
     <script>
-
         const input_nome = document.querySelector('#input-nome')
         const input_documento = document.querySelector('#input-documento')
         const input_andar = document.querySelector('#input-andar')
-        const input_hora = document.querySelector('#input-hora')
-        const input_data = document.querySelector('#input-data')
-
 
         const container = document.querySelector('.container')
         const container_flex = document.querySelector('.container-flex')
         const dias_btn = document.querySelector('#dias-btn')
-
-        const dia1 = document.querySelector('#dia-um')
-        const dia2 = document.querySelector('#dia-dois')
-        const dia3 = document.querySelector('#dia-tres')
-        const dia4 = document.querySelector('#dia-quatro')
-        const dia5 = document.querySelector('#dia-quinto')
-        const dia6 = document.querySelector('#dia-sexto')
-
         const input_btn = document.querySelector('#input-btn')
 
+        const mes = document.querySelectorAll('#mes')
+        const dias = document.querySelectorAll('#dia')
+        const procurar = document.querySelector('#procurar')
 
+        const colunas_container = document.querySelector('.colunas-container')
+        const col = document.querySelectorAll('#col')
+        const col_dia = document.querySelector('.output-col-dia')
+        const col_nome = document.querySelector('.output-col-nome')
+        const col_doc = document.querySelector('.output-col-documento')
+        const col_andar = document.querySelector('.output-col-andar')
+        const col_hora = document.querySelector('.output-col-hora')
+        const col_data = document.querySelector('.output-col-data')
 
+        const date = new Date()
+        const date_year = date.getFullYear()
+        const date_month = date.getMonth()
+        const date_day = date.getDay() + 2
+        const date_hour = date.getHours()
+        const date_min = date.getMinutes()
+
+        const hora_atual = date_hour + ':' + date_min
+        const data_atual = date_day + '/' + date_month + '/' + date_year
+
+        //Mes 
+        var mes_value = 0
+        for (let i = 0; i < mes.length; i++) {
+            mes[i].addEventListener('click', (e) => {
+                if (e.target.value == "Janeiro") {
+                    mes_value = 1
+                } else if (e.target.value == "Fevereiro") {
+                    mes_value = 2
+                } else if (e.target.value == "Março") {
+                    mes_value = 3
+                } else if (e.target.value == "Abril") {
+                    mes_value = 4
+                } else if (e.target.value == "Maio") {
+                    mes_value = 5
+                } else if (e.target.value == "Junho") {
+                    mes_value = 6
+                } else if (e.target.value == "Julho") {
+                    mes_value = 7
+                } else if (e.target.value == "Agosto") {
+                    mes_value = 8
+                } else if (e.target.value == "Setembro") {
+                    mes_value = 9
+                } else if (e.target.value == "Outubro") {
+                    mes_value = 10
+                } else if (e.target.value == "Novembro") {
+                    mes_value = 11
+                } else if (e.target.value == "Dezembro") {
+                    mes_value = 12
+                }
+            })
+        }
+
+        //Dia 
+        var dia_selecionado = 0
+        for (var i = 0; i < dias.length; i++) {
+            dias[i].addEventListener('click', (e) => {
+                dia_selecionado = e.target.value
+            })
+        }
+
+        //Limpar colunas
+        var verifica_child = 0
+        var veririca_todos_meses = 0
+
+        //Funções
+        function todosDias(data) {
+            for (item of data) {
+                const visitantes_filtrados = item.visitante
+                const visitante = item.visitante
+                const visitante_dia = item.dia
+                const visitante_nomes = visitante.name
+                const visitante_doc = visitante.documento
+                const visitante_andar = visitante.andar
+                const visitante_hora = hora_atual
+                const visitante_data = data_atual
+                dia_div = document.createElement('div')
+                nome_div = document.createElement('div')
+                doc_div = document.createElement('div')
+                andar_div = document.createElement('div')
+                hora_div = document.createElement('div')
+                data_div = document.createElement('div')
+                dia_div.setAttribute('class', 'dia_div_id')
+                dia_div.textContent = visitante_dia
+                nome_div.textContent = visitante_nomes
+                doc_div.textContent = visitante_doc
+                andar_div.textContent = visitante_andar
+                hora_div.textContent = hora_atual
+                data_div.textContent = data_atual
+                col_dia.appendChild(dia_div)
+                col_nome.appendChild(nome_div)
+                col_doc.appendChild(doc_div)
+                col_andar.appendChild(andar_div)
+                col_hora.appendChild(hora_div)
+                col_data.appendChild(data_div)
+                verifica_child = 1
+            }
+        }
+        //Limpa colunas
+        function limpaColunas() {
+            if (verifica_child != 0) {
+                col_dia.innerHTML = ''
+                col_nome.innerHTML = ''
+                col_doc.innerHTML = ''
+                col_hora.innerHTML = ''
+                col_andar.innerHTML = ''
+                col_data.innerHTML = ''
+                verifica_child = 0
+            }
+        }
+
+        //Cadastrar usuáriuo
         input_btn.addEventListener('click', () => {
-
             async function postData() {
                 const name = input_nome.value
                 const document = input_documento.value
                 const floor = input_andar.value
-                const hour = input_hora.value
-                const date = input_data.value
-
+                //Atribui a string do mês para ser salva no banco de dados
+                var month = 0
+                if (date_month == 0) {
+                    month = "janeiro"
+                } else if (date_month == 1) {
+                    month = "fevereiro"
+                } else if (date_month == 2) {
+                    month = "março"
+                } else if (date_month == 3) {
+                    month = "abril"
+                } else if (date_month == 4) {
+                    month = "maio"
+                } else if (date_month == 5) {
+                    month = "junho"
+                } else if (date_month == 6) {
+                    month = "julho"
+                } else if (date_month == 7) {
+                    month = "agosto"
+                } else if (date_month == 8) {
+                    month = "setembro"
+                } else if (date_month == 9) {
+                    month = "outubro"
+                } else if (date_month == 10) {
+                    month = "novembro"
+                } else if (date_month == 11) {
+                    month = "dezembro"
+                }
                 const res = await fetch('/api')
-
-
-
                 const data = {
-                    mês: 'janeiro', dia: [
-                        [//01
-                            {
-                                name: name,
-                                cpf: document,
-                                andar: floor,
-                                hora: hour,
-                                data: date
-                            }
-
-                        ]
-                    ]
-                }
-
-                const options = {
-                    method: "POST",
-                    body: JSON.stringify(data)
-            
-                }
-                console.log(options.body);
-                
-                fetch('/api', options)
-
-
-            }
-            postData()
-
-        })
-
-
-
-
-
-        dia1.addEventListener('click', () => {
-
-            async function getData() {
-                const response = await fetch('/api')
-                const data = await response.json()//receives data
-
-                for (item of data) {//Gets every item of object
-                    const meses = item.dia//dia
-                    const dia = meses[0]//dia 1
-                    container.style.display = 'block'
-
-                    for (pessoas of dia) {
-                        const name = document.createElement('div')
-                        const doc = document.createElement('div')
-                        const andar = document.createElement('div')
-                        const hora = document.createElement('div')
-                        const data = document.createElement('div')
-                        const line = document.createElement('div')
-                        line.classList.add('line')
-                        name.classList.add('name')
-                        doc.classList.add('age')
-                        andar.classList.add('andar')
-                        hora.classList.add('dia')
-                        data.classList.add('data')
-
-                        name.textContent = pessoas.name
-                        doc.textContent = pessoas.cpf
-                        andar.textContent = pessoas.andar
-                        hora.textContent = pessoas.hora
-                        data.textContent = pessoas.data
-
-
-
-                        // p.textContent = pessoas.age
-
-
-                        line.appendChild(name)
-                        line.appendChild(doc)
-                        line.appendChild(andar)
-                        line.appendChild(hora)
-                        line.appendChild(data)
-                        container.appendChild(line)
-                        console.log(pessoas.name);
+                    mês: month,
+                    dia: date_day,
+                    visitante: {
+                        name: name,
+                        documento: document,
+                        andar: floor,
+                        hora: hora_atual,
+                        data: data_atual
                     }
                 }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+                console.log(options.body);
+
+                fetch('/api', options)
             }
-            getData()
+            postData()
         })
 
+        //Procurar
+        procurar.addEventListener('click', () => {
+            //Janeiro
+            if (mes_value == 1) {
+                async function getJaneiro() {
+                    console.log('Janeiro selecionado');
+                    const response = await fetch('/janeiro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getJaneiro()
+                //Fevereiro
+            } else if (mes_value == 2) {
+                async function getFevereiro() {
+                    console.log('Fevereiro selecionado');
+                    const response = await fetch('/fevereiro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getFevereiro()
+                //Março
+            } else if (mes_value == 3) {
+                async function getMarço() {
+                    console.log('Março selecionado');
+                    const response = await fetch('/marco')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getMarço()
+                //Abril
+            } else if (mes_value == 4) {
+                async function getAbril() {
+                    console.log('Abril selecionado');
+                    const response = await fetch('/abril')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getAbril()
+                //Maio
+            } else if (mes_value == 5) {
+                async function getMaio() {
+                    console.log('Maio selecionado');
+                    const response = await fetch('/maio')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getMaio()
+                //Junho
+            } else if (mes_value == 6) {
+                async function getJunho() {
+                    console.log('Junho selecionado');
+                    const response = await fetch('/junho')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getJunho()
+                //Julho
+            } else if (mes_value == 7) {
+                async function getJulho() {
+                    console.log('Julho selecionado');
+                    const response = await fetch('/julho')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getJulho()
+                //Agosto
+            } else if (mes_value == 8) {
+                async function getAgosto() {
+                    console.log('Agosto selecionado');
+                    const response = await fetch('/agosto')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getAgosto()
+                //Setembro
+            } else if (mes_value == 9) {
+                async function getSetembro() {
+                    console.log('Setembro selecionado');
+                    const response = await fetch('/setembro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getSetembro()
+                //Outubro
+            } else if (mes_value == 10) {
+                async function getOutubro() {
+                    console.log('Outubro selecionado');
+                    const response = await fetch('/outubro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getOutubro()
+                //Novembro
+            } else if (mes_value == 11) {
+                async function getNovembro() {
+                    console.log('Novembro selecionado');
+                    const response = await fetch('Novembro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getNovembro()
+                //Dezembro
+            } else if (mes_value == 12) {
+                async function getDezembro() {
+                    console.log('Dezembro selecionado');
+                    const response = await fetch('/dezembro')
+                    const data = await response.json()
 
+                    //Verifica se colunas estão vazias e adiciona os dados
+                    if (dia_selecionado == "todos dias") {
+                        limpaColunas()
+                        todosDias(data)
 
-
-
-
-
-
-
-        /*   const btn = document.querySelector('#btn')
-          
-       
-              async function getData() {
-                  const input_content = document.querySelector('#input').value
-                  //console.log(position);
-                  const test = [
-                      {
-                          name: 'weker',
-                          age: 21
-                      }
-                  ]
-  
-                  const data = 'dgf'
-                  const options = {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(test),
-                      info: JSON.stringify(input_content)
-                  }
-                  const response = await fetch('/api', options)
-                  const json = await response.json()
-  
-                  console.log(json)
-  
-  
-              }getData()
-   */
-
+                    } else {
+                        const data_filtrada = data.filter(x => {
+                            return x.dia == dia_selecionado
+                        })
+                        if (verifica_child != 0) {
+                            col_dia.innerHTML = ''
+                            col_nome.innerHTML = ''
+                            col_doc.innerHTML = ''
+                            col_hora.innerHTML = ''
+                            col_andar.innerHTML = ''
+                            col_data.innerHTML = ''
+                            verifica_child = 0
+                        }
+                        for (item of data_filtrada) {
+                            const visitante = item.visitante
+                            const visitante_dia = item.dia
+                            const visitante_nomes = visitante.name
+                            const visitante_doc = visitante.documento
+                            const visitante_andar = visitante.andar
+                            const visitante_hora = hora_atual
+                            const visitante_data = data_atual
+                            dia_div = document.createElement('div')
+                            nome_div = document.createElement('div')
+                            doc_div = document.createElement('div')
+                            andar_div = document.createElement('div')
+                            hora_div = document.createElement('div')
+                            data_div = document.createElement('div')
+                            dia_div.textContent = visitante_dia
+                            nome_div.textContent = visitante_nomes
+                            doc_div.textContent = visitante_doc
+                            andar_div.textContent = visitante_andar
+                            hora_div.textContent = hora_atual
+                            data_div.textContent = data_atual
+                            col_dia.appendChild(dia_div)
+                            col_nome.appendChild(nome_div)
+                            col_doc.appendChild(doc_div)
+                            col_andar.appendChild(andar_div)
+                            col_hora.appendChild(hora_div)
+                            col_data.appendChild(data_div)
+                            verifica_child = 1
+                        }
+                    }
+                }
+                getDezembro()
+            }
+        })
 
     </script>
 

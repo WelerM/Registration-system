@@ -1,0 +1,247 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.486);
+    margin: auto;
+    font-family: 'Helvetica';
+
+}
+
+
+.main-container {
+    display: flex;
+    height: 500px;
+    width: 1000px;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #D7DBD6;
+    border-radius: 5px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.397);
+}
+
+.line {
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    height: 30px;
+}
+
+.line:hover {
+    background-color: rgba(77, 77, 77, 0.457);
+}
+
+
+.name,
+.age,
+.andar,
+.data,
+.dia {
+    color: black;
+    width: 70px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.582);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.input-container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.input-container > h1 {
+    color: rgba(0, 0, 0, 0.726);
+    font-size: 27px;
+}
+
+
+.input-container>input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.473);
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    padding-left: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+#input-btn {
+    height: 40px;
+    width: 200px;
+    background-color: rgba(0, 128, 0, 0.788);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    position: relative;
+}
+
+#input-btn:hover {
+    cursor: pointer;
+    background-color: green;
+    top: 1px;
+}
+#weler{
+    margin-top: 220px;
+    font-family: cursive;
+    color: rgba(0, 0, 0, 0.514);
+    position: relative;
+}
+span{
+    font-size: 18px;
+}
+
+
+.output-container {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.output-filtro-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+
+    color: rgb(27, 27, 27);
+}
+.output-filtro-container > h1{
+    color: rgba(0, 0, 0, 0.726);
+    font-size: 40px;
+}
+
+
+#output-btn {
+    height: 40px;
+    width: 200px;
+}
+
+.output-container-dia-mes {
+    display: flex;
+    gap: 20px;
+}
+
+#select-dia {
+    height: 30px;
+    background-color: rgba(0, 128, 0, 0.788);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 0px 5px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#select-dia:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+#select-mes {
+    height: 30px;
+    width: 100px;
+    background-color: rgba(0, 128, 0, 0.788);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#select-mes:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+#procurar {
+    height: 30px;
+    background-color: rgba(0, 128, 0, 0.788);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 0px 10px;
+    width: 100px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#procurar:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+.output-screen {
+    width: 100%;
+    height: 60%;
+    border:  1px solid rgba(0, 0, 0, 0.473);
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+#output-h2 {
+    padding: 10px;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.726);
+    display: none;
+}
+
+.output-screen-container-titles {
+    width: 100%;
+    display: flex;
+}
+
+.output-screen-container-titles>* {
+    width: 120px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.568);
+    padding: 5px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    background-color: rgba(128, 128, 128, 0.356)
+}
+
+.colunas-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+}
+
+.colunas-container>* {
+    width: 120px;
+    height: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.473);
+}
+
+.colunas-container>*>* {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.582);
+    padding: 5px;
+    font-size: 15px;
+    background-color: rgba(128, 128, 128, 0.397);
+}
