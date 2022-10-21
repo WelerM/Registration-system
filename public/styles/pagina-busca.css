@@ -1,0 +1,279 @@
+.pagina-busca {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    transition: 0.7s;
+    display: none;
+}
+.pagina-busca-on{
+    display: block;
+    position: relative;
+    left: -850px;
+}
+
+.busca-options-left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    border-right: 1px solid goldenrod;
+}
+
+#pesquisar-por-nome,
+#pesquisar-por-documento {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.356);
+    border-radius: 5px;
+    padding: 0px 5px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    outline: navajowhite;
+    padding-left: 10px;
+    color: goldenrod;
+    width: 100%;
+    border: none;
+}
+
+
+.busca-options-right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.dia-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 390px;
+    margin-bottom: 10px;
+    
+}
+.dia-container-mes {
+    width: 80%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.dia-container-mes>button {
+    height: 30px;
+    width: 70px;
+    padding: 5px;
+    background-color: goldenrod;
+    border: none;
+    font-size: 15px;
+}
+
+.dia-container-mes>button:hover {
+    cursor: pointer;
+}
+
+.dia-container-dia {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    transition: 0.7s;
+}
+
+
+.dia {
+    width: auto;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.356);
+    transition: 0.4s;
+    padding: 5px;
+    padding: 0px 5px;
+    user-select: none
+
+}
+.dia:hover {
+    color: black;
+    background-color: goldenrod;
+    cursor: pointer;
+}
+#procurar {
+    height: 30px;
+    width: 200px;
+    background-color: goldenrod;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+    padding: 0px 10px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#procurar:hover {
+    cursor: pointer;
+    background-color: rgb(175, 132, 24);
+}
+
+.output-filtro-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid black;
+    border-bottom: none;
+    background-color: rgba(128, 128, 128, 0.356);
+}
+
+.output-filtro-container>h1 {
+    color: goldenrod;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+
+#output-btn {
+    height: 40px;
+    width: 200px;
+}
+
+
+
+
+
+#proximo {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 50px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+.dia-container-mes>p {
+    font-size: 25px;
+}
+#anterior{
+    width: 50px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+#proximo:hover, #anterior:hover{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: rgba(63, 63, 63, 0.356);
+}
+
+
+
+
+
+
+
+
+#select-dia {
+    height: 30px;
+    background-color: goldenrod;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+    padding: 0px 5px;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#select-dia:hover {
+    cursor: pointer;
+    background-color: rgb(175, 132, 24);
+}
+
+#select-mes {
+    height: 30px;
+    width: 100px;
+    background-color: goldenrod;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+#select-mes:hover {
+    cursor: pointer;
+    background-color: rgb(175, 132, 24);
+}
+
+
+.output-screen {
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#output-h2 {
+    padding: 10px;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.726);
+    display: none;
+}
+
+.output-screen-container-titles {
+    width: 100%;
+    display: flex;
+}
+.nada-encontrado{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2E2E2E;
+    display: none;
+}
+
+.output-screen-container-titles>* {
+    width: 120px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.568);
+    padding: 5px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    background-color: rgba(128, 128, 128, 0.356)
+}
+
+.colunas-container {
+    width: 100%;
+    display: flex;
+
+}
+
+.colunas-container>* {
+    width: 120px;
+    height: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.568);
+
+}
+
+.colunas-container>*>* {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.582);
+    padding: 5px;
+    font-size: 15px;
+    background-color: rgb(54, 54, 54);
+}
+
+.col-title-visita,
+.output-col-visita {
+    width: 180px;
+}
+

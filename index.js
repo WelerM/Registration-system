@@ -9,6 +9,46 @@ const database = new Datastore('database.db')
 database.loadDatabase()
 
 //Data query
+var dados = ''
+
+app.post('/porNome', (req, res) => {
+    const obj = req.body
+    const name = obj.name
+    obj.name = new RegExp(name)
+    database.find(obj, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)
+        dados = data
+    })
+})
+
+
+app.get('/porNome', (req, res) => {
+    res.json(dados)
+})
+
+
+/* const obj = req.body
+const mes = obj.mês
+obj.mês = new RegExp(mes)
+
+database.find(obj, (err, data) => {
+    if (err) {
+        res.end()
+        return
+    }
+    res.json(data)
+    console.log(data);
+}) */
+
+
+// test.replace(/\"/g, "")
+
+
+
 app.get('/janeiro', (req, res) => {
     database.find({ mês: "janeiro" }, (err, data) => {
         if (err) {
@@ -18,7 +58,6 @@ app.get('/janeiro', (req, res) => {
         res.json(data)
     })
 })
-
 app.get('/fevereiro', (req, res) => {
     database.find({ mês: "fevereiro" }, (err, data) => {
         if (err) {
@@ -51,7 +90,7 @@ app.get('/abril', (req, res) => {
 
 app.get('/maio', (req, res) => {
     database.find({ mês: "maio" }, (err, data) => {
-    if (err) {
+        if (err) {
             res.end()
             return
         }
