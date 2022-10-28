@@ -11,271 +11,130 @@
     <link rel="stylesheet" href="./styles/pagina-busca.css">
     <link rel="stylesheet" href="./styles/pagina-ajuda.css">
     <script src="./js/script.js" defer></script>
-    <script src="./js/dom.js" defer></script>
 </head>
 
 <body>
     <div class="main-container">
 
+        <div class="left-menu">
+            <h1>MENU</h1>
+            <button id="btn-buscar-visitante">BUSCAR VISITANTE</button>
+        </div>
+
         <div class="pagina-cadastro">
-            <div class="input-container-left">
-                <div class="input-container-left-content">
-                    <div claSS="input-logo-container">
-                        <img src="">
-                 <!--        <h1>Edifício Capelli</h1> -->
+            <button id="btn-ok">Cadastrar</button>
+            <div class="pagina-cadastro-container">
+                <h1 id="input-h1">sistema de cadastro</h1>
+
+                <div class="left-content-items">
+                    <p>Nome</p>
+                    <input id="input-nome" type="text" placeholder="nome" required>
+                    <p>Documento</p>
+                    <input id="input-documento" type="text" placeholder="documento">
+                    <p>Andar</p>
+                    <input id="input-andar" type="text" placeholder="andar">
+                    <p>Tipo de visita</p>
+                    <select id="">
+                        <option selected disabled>tipo de visita</option>
+                        <option id="tipo-visita">horário agendado</option>
+                        <option id="tipo-visita">prestação de serviços</option>
+                        <option id="tipo-visita">entrega no andar</option>
+                        <option id="tipo-visita">falar com funcionários</option>
+                        <option id="tipo-visita">outro</option>
+                    </select>
+                    <div class="foto-container">
+                        <img src="./img/camera.png" alt="">
+                        <button id="tirar-foto">TIRAR FOTO</button>
                     </div>
-                    <h1 id="input-h1">sistema de cadastro</h1>
-                    <div class="left-content-items">
-                        <p>Nome</p>
-                        <input id="input-nome" type="text" placeholder="nome">
-                        <p>Documento</p>
-                        <input id="input-documento" type="text" placeholder="documento">
-                        <p>Andar</p>
-                        <input id="input-andar" type="text" placeholder="andar">
-                        <p>Tipo de visita</p>
-                        <select id="">
-                            <option selected disabled>tipo de visita</option>
-                            <option id="tipo-visita">horário agendado</option>
-                            <option id="tipo-visita">prestação de serviços</option>
-                            <option id="tipo-visita">entrega no andar</option>
-                            <option id="tipo-visita">falar com funcionários</option>
-                            <option id="tipo-visita">outro</option>
-                        </select>
-                        <div class="foto-container">
-                            <img src="./img/camera.png" alt="">
-                            <button id="tirar-foto">tirar foto</button>
-                        </div>
-                    </div>
-                    <button id="input-btn">adicionar dados</button>
+                    <button id="btn_cadastrar">CADASTRAR</button>
                 </div>
             </div>
-            <div class="slider-amarelo">
-                <button class="buscar-visitante">buscar visitante</button>
-                <button class="ajuda">ajuda</button>
-            </div>
+
+
         </div>
 
         <div class="pagina-busca">
-            <div class="output-filtro-container">
-                <div class="busca-options-left-container">
-                    <h3>pesquisa rápida</h3>
-                    <input id="pesquisar-por-nome" type="text" placeholder="Pesquisar por nome">
-                    <input id="pesquisar-por-documento" type="text" placeholder="Pesquisar por documento">
-                </div>
-                <div class="busca-options-right-container">
-                    <h3>pesquisa por data</h3>
-                    <div class="dia-container">
-                        <div class="dia-container-mes">
-                            <img src="./img/arrow.png" id="anterior">
-                            <p id="dp_mes"></p>
-                            <img src="./img/arrow.png" id="proximo">
-                        </div>
-                        <div class="dia-container-dia">
-                            <div class="dia" class="todos-dias">todos dias</div>
-                            <div class="dia">01</div>
-                            <div class="dia">02</div>
-                            <div class="dia">03</div>
-                            <div class="dia">04</div>
-                            <div class="dia">05</div>
-                            <div class="dia">06</div>
-                            <div class="dia">07</div>
-                            <div class="dia">08</div>
-                            <div class="dia">09</div>
-                            <div class="dia">10</div>
-                            <div class="dia">11</div>
-                            <div class="dia">12</div>
-                            <div class="dia">13</div>
-                            <div class="dia">14</div>
-                            <div class="dia">15</div>
-                            <div class="dia">16</div>
-                            <div class="dia">17</div>
-                            <div class="dia">18</div>
-                            <div class="dia">19</div>
-                            <div class="dia">20</div>
-                            <div class="dia">21</div>
-                            <div class="dia">22</div>
-                            <div class="dia">23</div>
-                            <div class="dia">24</div>
-                            <div class="dia">25</div>
-                            <div class="dia">26</div>
-                            <div class="dia">27</div>
-                            <div class="dia">28</div>
-                            <div class="dia">29</div>
-                            <div class="dia">30</div>
-                            <div class="dia">31</div>
-                        </div>
+            <div class="pagina-busca-container">
+                <div class="output-filtro-container">
+                    <div class="busca-options-left-container">
+                        <h3>pesquisa rápida</h3>
+                        <input id="pesquisar-por-nome" type="text" placeholder="Pesquisar por nome">
+                        <input id="pesquisar-por-documento" type="text" placeholder="Pesquisar por documento">
                     </div>
-                    <button id="procurar">Procurar</button>
+                    <div class="busca-options-right-container">
+                        <h3>pesquisa por data</h3>
+                        <div class="dia-container">
+                            <div class="dia-container-mes">
+                                <img src="./img/arrow.png" id="anterior">
+                                <p id="dp_mes"></p>
+                                <img src="./img/arrow.png" id="proximo">
+                            </div>
+                            <div class="dia-container-dia">
+                                <div class="dia" id="todos-dias">todos dias</div>
+                                <div class="dia">01</div>
+                                <div class="dia">02</div>
+                                <div class="dia">03</div>
+                                <div class="dia">04</div>
+                                <div class="dia">05</div>
+                                <div class="dia">06</div>
+                                <div class="dia">07</div>
+                                <div class="dia">08</div>
+                                <div class="dia">09</div>
+                                <div class="dia">10</div>
+                                <div class="dia">11</div>
+                                <div class="dia">12</div>
+                                <div class="dia">13</div>
+                                <div class="dia">14</div>
+                                <div class="dia">15</div>
+                                <div class="dia">16</div>
+                                <div class="dia">17</div>
+                                <div class="dia">18</div>
+                                <div class="dia">19</div>
+                                <div class="dia">20</div>
+                                <div class="dia">21</div>
+                                <div class="dia">22</div>
+                                <div class="dia">23</div>
+                                <div class="dia">24</div>
+                                <div class="dia">25</div>
+                                <div class="dia">26</div>
+                                <div class="dia">27</div>
+                                <div class="dia">28</div>
+                                <div class="dia">29</div>
+                                <div class="dia">30</div>
+                                <div class="dia">31</div>
+                            </div>
+                        </div>
+                        <button id="procurar">PROCURAR</button>
+                    </div>
                 </div>
-            </div>
 
-          
-            <div class="output-screen">
-                <h3 id="output-h2">resultado</h3>
-                <div class="output-screen-container-titles">
-                    <div class="col-title">data</div>
-                    <div class="col-title">hora</div>
-                    <div class="col-title">nome</div>
-                    <div class="col-title">documento</div>
-                    <div class="col-title">andar</div>
-                    <div class="col-title-visita">tipo de visita</div>
-                </div>
-                <div class="nada-encontrado">
-                    <h4>Nenhum dado encontrado</h4>
-                </div>
-                <!-- Colunas -->
-                <div class="colunas-container">
-                    <div id="col" class="output-col-data"></div>
-                    <div id="col" class="output-col-hora"></div>
-                    <div id="col" class="output-col-nome"></div>
-                    <div id="col" class="output-col-documento"></div>
-                    <div id="col" class="output-col-andar"></div>
-                    <div id="col" class="output-col-visita"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pagina-ajuda">
-            <div class="menu-lateral">
-                <ul>
-                    <li value="1" class="menu-lateral-li">Informações deste edifício</li>
-                    <li value="2" class="menu-lateral-li">Informações dos andares</li>
-                    <li value="3" class="menu-lateral-li">Informações de limpeza</li>
-                    <li value="4" class="menu-lateral-li">Manual de portaria</li>
-                    <li value="5" class="menu-lateral-li">Contatos</li>
-                </ul>
-            </div>
-            <div class="container-conteudo">
-                <div class="conteudo-preview">
-                    <h1>Escolha uma opção à esquerda</h1>
-                </div>
-                <div class="informacoes-edificio">
-                    <h1>Informações deste edifício</h1>
-                    <h3 class="informacoes-edificio-h3">Informações gerais</h3>
-                    <p>Nome: edifício Capelli</p>
-                    <p>Endereço: N° 161, avenida Otávio Rocha / lado ímpar</p>
-                    <p>Horario de funcionamento da portaria: 08:00h / 18:15h</p>
-                    <h3 class="informacoes-edificio-h3">Informações técnicas</h3>
-                    <p>Número total de andares: 10</p>
-                    <p>Número de andares comerciais: 8</p>
-                    <p>Salão de festas: 9°</p>
-                    <p>Número de salas por andar: 1</p>
-                    <p>Número de banheiros por andar: 2</p>
-                </div>
-                <div class="informacoes-andares">
-                    <div class="andar-9">
-                        <div class="andar-direita">
-                            <h1>9° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>SALÃO DE FESTAS ( aguardando inauguração )</h3>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 09:00h - 12:00h - 13:30h - 18:00h</p>
-                        </div>
+                <div class="output-screen">
+                    <h3 id="output-h2">resultado</h3>
+                    <div class="output-screen-container-titles">
+                        <div class="col-title">data</div>
+                        <div class="col-title">hora</div>
+                        <div class="col-title">nome</div>
+                        <div class="col-title">documento</div>
+                        <div class="col-title">andar</div>
+                        <div class="col-title-visita">tipo de visita</div>
                     </div>
-                    <div class="andar-8">
-                        <div class="andar-direita">
-                            <h1>8° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>SINDSEPERS</h3>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 10:00h - 16:00h</p>
-                        </div>
+                    <div class="nada-encontrado">
+                        <h4>Nenhum dado encontrado</h4>
                     </div>
-                    <div class="andar-7">
-                        <div class="andar-direita">
-                            <h1>7° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>MULTIPROMOÇÕES</h3>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 10:00h - 16:00h</p>
-                        </div>
-                    </div>
-                    <div class="andar-6">
-                        <div class="andar-direita">
-                            <h1>6° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>EMPÓRIO 25 - estoque</h3>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 9:00h - 18:00h</p>
-                        </div>
-                    </div>
-                    <div class="andar-5">
-                        <div class="andar-direita">
-                            <h1>5° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>DBI - contabilidade</h3>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 8:00h - 17:45h</p>
-                        </div>
-                    </div>
-                    <div class="andar-4">
-                        <div class="andar-direita">
-                            <h1>4° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3>VAZIO - disponível para alugar</h3>
-
-                        </div>
-                    </div>
-                    <div class="andar-3">
-                        <div class="andar-direita">
-                            <h1>3° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3></h3>
-                            <p>ESCRITÓRIO SÍNDICO</p>
-                            <p>aberto apenas para visitas marcadas</p>
-                        </div>
-                    </div>
-                    <div class="andar-2">
-                        <div class="andar-direita">
-                            <h1>2° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3></h3>
-                            <p>ESCRITÓRIO PRIVADO</p>
-                            <p>aberto apenas para visitas marcadas</p>
-                        </div>
-                    </div>
-                    <div class="andar-1">
-                        <div class="andar-direita">
-                            <h1>1° andar</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                            <h3></h3>
-                            <p>ORTHODONTIC</p>
-                            <p>acesso liberado ao público</p>
-                            <p>Dia e horário de funcionamento</p>
-                            <p> seg à sex, 09:00h - 12:00h - 13:30h - 18:00h</p>
-                        </div>
-                    </div>
-                    <div class="sobre-loja">
-                        <div class="andar-direita">
-                            <h1>Sobre loja</h1>
-                        </div>
-                        <div class="andar-esquerda">
-
-                        </div>
-                    </div>
-                    <div class="terreo">
-                        <div class="andar-direita">
-                            <h1>Andar térreo</h1>
-                        </div>
-                        <div class="andar-esquerda">
-                        
-                        </div>
+                    <!-- Colunas -->
+                    <div class="colunas-container">
+                        <div id="col" class="output-col-data"></div>
+                        <div id="col" class="output-col-hora"></div>
+                        <div id="col" class="output-col-nome"></div>
+                        <div id="col" class="output-col-documento"></div>
+                        <div id="col" class="output-col-andar"></div>
+                        <div id="col" class="output-col-visita"></div>
                     </div>
                 </div>
-                <div class="informacoes-limpeza"></div>
-                <div class="manual-portaria"></div>
-                <div class="contatos"></div>
             </div>
         </div>
+
+
 
     </div>
 

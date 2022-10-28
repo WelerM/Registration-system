@@ -1,50 +1,29 @@
+*{
+    font-family: 'Helvetica';
+}
 .pagina-cadastro {
     width: 100%;
-    display: flex;
-    height: 100%;
-    border-radius: 5px;
-    font-size: 13px;
-}
-
-
-.input-container-left {
-    align-items: flex-end;
-    width: 1000px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    transition: 0.7s;
-    position: relative;
-    right: 120px;
-}
-
-.input-container-left-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 800px;
-    text-align: left;
+
+    border-radius: 5px;
+    font-size: 13px;
+
 }
-
-.input-container-left-hide {
-    transition: 0.7s;
-    width: 0%;
+.pagina-cadastro-hide{
+    display: none;
 }
-
-
-.input-logo-container {
+.pagina-cadastro-container{
+    background-color:#b0b0b0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
 }
-
-.input-logo-container>h1 {
-    font-size: 50px;
-}
-
 #input-h1 {
     font-size: 47px;
 }
@@ -59,15 +38,15 @@
 select {
     width: 100%;
     height: 40px;
-    border: 1px solid goldenrod;
-    background-color: rgb(56, 56, 56);
-    color: goldenrod;
+    background-color: rgba(56, 56, 56, 0.516);
     padding-left: 10px;
     outline: none;
     font-size: 18px;
+    border: none;
     border-radius: 5px;
     letter-spacing: 0.5px;
     margin-bottom: 10px;
+
 }
 
 .left-content-items>p {
@@ -76,50 +55,8 @@ select {
     left: 3px;
 }
 
-
-#input-btn {
-    height: 40px;
-    width: 200px;
-    width: 75%;
-    background-color: goldenrod;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    position: relative;
-    margin-top: 20px;
-
-}
-
-#input-btn:hover {
-    cursor: pointer;
-    background-color: rgb(153, 116, 24);
-    top: 1px;
-}
-
 span {
     font-size: 18px;
-}
-
-
-.slider-amarelo {
-    background-color: goldenrod;
-    width: 300px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    right: -290px;
-    transition: 0.7s;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-}
-
-.slider-amarelo-on {
-    transition: 0.7s;
-    right: 280px;
 }
 
 
@@ -161,10 +98,31 @@ span {
     align-items: center;
 }
 #tirar-foto{
-    background-color: goldenrod;
     border: none;
     border-radius: 5px;
     height: 40px;
     width: 20%;
     font-size: 20px;
+    background-color: #1ABDA6;
+}
+
+
+#btn_cadastrar {
+    height: 40px;
+    width: 100%;
+    background-color: #1ABDA6;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    position: relative;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.194);
+
+}
+
+#btn_cadastrar:hover {
+    cursor: pointer;
+    background-color: #19b19d;
+    top: 1px;
 }

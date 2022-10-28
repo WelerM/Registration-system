@@ -1,20 +1,21 @@
 //=============== PAGINA DE CADASTRO ========================//
+const main_container = document.querySelector('.main-container')
+const left_menu = document.querySelector('.left-menu')
 const input_nome = document.querySelector('#input-nome')
 const input_documento = document.querySelector('#input-documento')
 const input_andar = document.querySelector('#input-andar')
-const input_btn = document.querySelector('#input-btn')
+const btn_cadastrar = document.querySelector('#btn_cadastrar')
 const tipo_visita = document.querySelectorAll('#tipo-visita')
 
 //===================  PAGINA BUSCA ========================//
 const pesquisar_por_nome = document.querySelector('#pesquisar-por-nome')
-//para ativar 
-//const pesquisar_por_doc = document.querySelector('#pesquisar-por-documento')
 const anterior = document.querySelector('#anterior')
 const proximo = document.querySelector('#proximo')
 const dias = document.querySelectorAll('.dia')
 const procurar = document.querySelector('#procurar')
 const nada_encontrado = document.querySelector('.nada-encontrado')
 
+//==================== COLUNAS =================================
 const colunas_container = document.querySelector('.colunas-container')
 const col = document.querySelectorAll('#col')
 const col_data = document.querySelector('.output-col-data')
@@ -25,6 +26,7 @@ const col_andar = document.querySelector('.output-col-andar')
 const col_visita = document.querySelector('.output-col-visita')
 const col_dia = document.querySelector('.output-col-dia')
 
+//======================= DATAS =========================
 const date = new Date()
 const date_year = date.getFullYear()
 const date_month = date.getMonth()
@@ -32,43 +34,25 @@ const date_month_edited = date.getMonth() + 1
 const date_day = date.getDate()
 const date_hour = date.getHours()
 const date_min = date.getMinutes()
-
 const hora_atual = date_hour + ':' + date_min
 const data_atual = date_day + '/' + date_month_edited + '/' + date_year
-
-const buscar_visitante = document.querySelector('.buscar-visitante')
-
-const pagina_busca = document.querySelector('.pagina-busca')
-
 const dp_mes = document.querySelector('#dp_mes')
 const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+
+
+const pagina_cadastro = document.querySelector('.pagina-cadastro')
+const btn_buscar_visitante = document.querySelector('#btn-buscar-visitante')
+const pagina_busca = document.querySelector('.pagina-busca')
+
 
 //                       (  EVENTOS )            
 //====================================================================
 
 var x = true
-buscar_visitante.addEventListener('click', () => {
-    input_container_left.classList.toggle('input-container-left-hide')
-    slider_amarelo.classList.toggle('slider-amarelo-on')
-    buscar_visitante.classList.toggle('buscar-visitante-on')
-
-    if (x == true) {
-        setTimeout(() => {
-            pagina_busca.classList.toggle('pagina-busca-on')
-            pagina_cadastro.classList.toggle('pagina-cadastro-hide')
-            buscar_visitante.textContent = "voltar"
-        }, 600)
-        x = false
-    } else if (x == false) {
-        pagina_cadastro.classList.toggle('pagina-cadastro-hide')
-        pagina_busca.classList.toggle('pagina-busca-on')
-        buscar_visitante.textContent = "buscar visitante"
-        x = true
-    }
-})
-
 var text = ''
+
 pesquisar_por_nome.addEventListener('keydown', (e) => {
+    nada_encontrado.style.display = 'none'
     if (e.key == "Backspace") {
         text = ''
         pesquisar_por_nome.textContent = ''
@@ -82,12 +66,28 @@ pesquisar_por_nome.addEventListener('keydown', (e) => {
 
 })
 
+//Esconde tela de cadastro e abre tela de busca
+btn_buscar_visitante.addEventListener('click', () => {
+    pagina_cadastro.classList.toggle('pagina-cadastro-hide')
+    pagina_busca.classList.toggle('pagina-busca-on')
+})
 
+
+
+function validacao_input() {
+    if (input_andar.value <= 0 || input_andar.value > 9) {
+        console.log('erro');
+    } else if (input_andar.value > 0 && input_andar.value <= 9) {
+        console.log('ok');
+    }
+}
 
 //Cadastrar usuáriuo
-var month = ''
-input_btn.addEventListener('click', () => {
+
+btn_cadastrar.addEventListener('click', () => {
+
     //Validação de formulário aqui   
+
     async function postData() {
         const name = input_nome.value
         const document = input_documento.value
@@ -118,6 +118,7 @@ input_btn.addEventListener('click', () => {
         } else if (date_month == 11) {
             month = "dezembro"
         }
+        dp_mes.textContent = month
 
         const data = {
             data: data_atual,
@@ -142,8 +143,63 @@ input_btn.addEventListener('click', () => {
 })
 
 //Procurar
-mes_value = 0
+var mes_value = date_month_edited
+
+var m = date_month_edited
+anterior.addEventListener('click', () => {
+    if (m == 0) {
+        m = m
+        dp_mes.textContent = array_meses[m]
+    } else {
+        m -= 1
+        dp_mes.textContent = array_meses[m]
+        mes_value = m
+        console.log(mes_value);
+    }
+})
+proximo.addEventListener('click', () => {
+    if (m == 11) {
+        m = m
+        dp_mes.textContent = array_meses[m]
+    } else {
+        m = m + 1
+        dp_mes.textContent = array_meses[m]
+        mes_value = m
+        console.log(mes_value);
+    }
+})
+function inserreMesAtual(){
+    if (date_month == 0) {
+        month = "janeiro"
+    } else if (date_month == 1) {
+        month = "fevereiro"
+    } else if (date_month == 2) {
+        month = "março"
+    } else if (date_month == 3) {
+        month = "abril"
+    } else if (date_month == 4) {
+        month = "maio"
+    } else if (date_month == 5) {
+        month = "junho"
+    } else if (date_month == 6) {
+        month = "julho"
+    } else if (date_month == 7) {
+        month = "agosto"
+    } else if (date_month == 8) {
+        month = "setembro"
+    } else if (date_month == 9) {
+        month = 'outubro'
+    } else if (date_month == 10) {
+        month = "novembro"
+    } else if (date_month == 11) {
+        month = "dezembro"
+    }
+    dp_mes.textContent = month
+}
+inserreMesAtual()
+
 procurar.addEventListener('click', () => {
+    nada_encontrado.style.display = 'none'
     //Janeiro
     if (mes_value == 0) {
         async function getJaneiro() {
@@ -157,6 +213,7 @@ procurar.addEventListener('click', () => {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
+                console.log(data_filtrada);
                 limpaColunas()
                 insereDadosColunas(data_filtrada)
             }
@@ -384,28 +441,6 @@ procurar.addEventListener('click', () => {
     }
 })
 
-var m = 0
-anterior.addEventListener('click', () => {
-    if (m == 0) {
-        m = m
-        dp_mes.textContent = array_meses[m]
-    } else {
-        m -= 1
-        dp_mes.textContent = array_meses[m]
-        mes_value = m
-    }
-
-})
-proximo.addEventListener('click', () => {
-    if (m == 11) {
-        m = m
-        dp_mes.textContent = array_meses[m]
-    } else {
-        m = m + 1
-        dp_mes.textContent = array_meses[m]
-        mes_value = m
-    }
-})
 
 //                          ( Funções )
 //====================================================================
@@ -481,9 +516,9 @@ function limpaColunas() {
 //Insere dados
 function insereDadosColunas(data_filtrada) {
     if (data_filtrada.length == 0) {
-        nada_encontrado.style.display='flex'
+        nada_encontrado.style.display = 'flex'
     } else {
-        nada_encontrado.style.display='none'
+        nada_encontrado.style.display = 'none'
         for (i of data_filtrada) {
             const visitante_data = i.data
             const visitante_hora = i.hora
@@ -516,37 +551,7 @@ function insereDadosColunas(data_filtrada) {
     }
 }
 
-var t = date_month
-function verificaMes() {
-    m = date_month
-    if (m == 0) {
-        month = "janeiro"
-    } else if (m == 1) {
-        month = "fevereiro"
-    } else if (m == 2) {
-        month = "março"
-    } else if (m == 3) {
-        month = "abril"
-    } else if (m == 4) {
-        month = "maio"
-    } else if (m == 5) {
-        month = "junho"
-    } else if (m == 6) {
-        month = "julho"
-    } else if (m == 7) {
-        month = "agosto"
-    } else if (m == 8) {
-        month = "setembro"
-    } else if (m == 9) {
-        month = 'outubro'
-    } else if (m == 10) {
-        month = "novembro"
-    } else if (m == 11) {
-        month = "dezembro"
-    }
-    dp_mes.textContent = month
-}
-verificaMes()
+var month = ''
 
 
 //                       ( SELECTS )            
@@ -555,20 +560,20 @@ verificaMes()
 
 function clean_backgroundd() {
     for (i of dias) {
-        i.style.backgroundColor = '#1E1E1E'
-        i.style.color = '#B48A20'
+        i.style.backgroundColor = '#666666'
     }
 }
-//Dia 
+//Dia //estilo botoes pesquisa
 var dia_selecionado = 0
 for (let i = 0; i < dias.length; i++) {
     dias[i].addEventListener('click', (e) => {
         dia_selecionado = e.target.innerHTML
         clean_backgroundd()
-        dias[i].style.backgroundColor = 'goldenrod'
-        dias[i].style.color = 'black'
+        dias[i].style.backgroundColor = '#1ABDA6'
+        dias[i].style.color = 'white'
     })
 }
+
 //Tipo visita
 var visita_selecionada = ''
 for (let i = 0; i < tipo_visita.length; i++) {

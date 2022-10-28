@@ -2,19 +2,23 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
     padding: 20px;
     height: 100%;
     transition: 0.7s;
     display: none;
 }
 .pagina-busca-on{
-    display: block;
+    display: flex;
     position: relative;
-    left: -850px;
+    align-items: center;
 }
 
+.pagina-busca-container{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.356);
+}
 .busca-options-left-container {
     display: flex;
     flex-direction: column;
@@ -22,7 +26,6 @@
     width: 100%;
     align-items: center;
     padding: 10px;
-    border-right: 1px solid goldenrod;
 }
 
 #pesquisar-por-nome,
@@ -32,10 +35,9 @@
     border-radius: 5px;
     padding: 0px 5px;
     letter-spacing: 0.5px;
-    font-size: 15px;
+    font-size: 18px;
     outline: navajowhite;
     padding-left: 10px;
-    color: goldenrod;
     width: 100%;
     border: none;
 }
@@ -54,10 +56,11 @@
     align-items: center;
     width: 390px;
     margin-bottom: 10px;
+    gap: 10px;
     
 }
 .dia-container-mes {
-    width: 80%;
+    width: 100%;
     height: 40px;
     display: flex;
     align-items: center;
@@ -97,40 +100,45 @@
     transition: 0.4s;
     padding: 5px;
     padding: 0px 5px;
-    user-select: none
+    user-select: none;
+    color: white;
 
 }
 .dia:hover {
-    color: black;
-    background-color: goldenrod;
+    color: white;
+    background-color: #1ABDA6;
     cursor: pointer;
+}
+#todos-dias{
+ width: 157px;
 }
 #procurar {
     height: 30px;
-    width: 200px;
-    background-color: goldenrod;
-    border: 1px solid black;
+    width: 100%;
+    background-color: #1ABDA6;
+    border: 1px solid rgba(0, 0, 0, 0.194);
     border-radius: 5px;
     color: black;
     text-align: center;
     padding: 0px 10px;
     letter-spacing: 0.5px;
     font-size: 15px;
+    outline: none;
 }
 
 #procurar:hover {
     cursor: pointer;
-    background-color: rgb(175, 132, 24);
+    background-color: #19b19d;  
 }
 
 .output-filtro-container {
-    padding-top: 10px;
+    padding: 20px;
+    padding-bottom: 0px;
     display: flex;
     justify-content: center;
     gap: 5px;
-    border: 1px solid black;
     border-bottom: none;
-    background-color: rgba(128, 128, 128, 0.356);
+
 }
 
 .output-filtro-container>h1 {
@@ -156,18 +164,22 @@
     padding: 5px 10px;
     border-radius: 3px;
     transition: 0.5s;
+    background-color: rgba(63, 63, 63, 0.356);
+
 }
 .dia-container-mes>p {
-    font-size: 25px;
+    font-size: 30px;
 }
 #anterior{
     width: 50px;
     padding: 5px 10px;
     border-radius: 3px;
     transition: 0.5s;
+    background-color: rgba(63, 63, 63, 0.356);
+
 }
 #proximo:hover, #anterior:hover{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.217);
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(63, 63, 63, 0.356);
@@ -216,7 +228,6 @@
 
 
 .output-screen {
-    width: 100%;
     border-radius: 5px;
     text-align: center;
 }
@@ -238,7 +249,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2E2E2E;
+    background-color: rgba(255, 0, 0, 0.588);
     display: none;
 }
 
@@ -255,6 +266,7 @@
 .colunas-container {
     width: 100%;
     display: flex;
+    overflow: scroll;
 
 }
 
@@ -269,7 +281,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.582);
     padding: 5px;
     font-size: 15px;
-    background-color: rgb(54, 54, 54);
+    background-color: rgba(54, 54, 54, 0.331);
 }
 
 .col-title-visita,
