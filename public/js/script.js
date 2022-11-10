@@ -8,12 +8,7 @@ const btn_cadastrar = document.querySelector('#btn_cadastrar')
 const tipo_visita = document.querySelectorAll('#tipo-visita')
 
 //===================  PAGINA BUSCA ========================//
-const pesquisar_por_nome = document.querySelector('#pesquisar-por-nome')
-const anterior = document.querySelector('#anterior')
-const proximo = document.querySelector('#proximo')
-const dias = document.querySelectorAll('.dia')
-const procurar = document.querySelector('#procurar')
-const nada_encontrado = document.querySelector('.nada-encontrado')
+
 
 //==================== COLUNAS =================================
 const colunas_container = document.querySelector('.colunas-container')
@@ -37,7 +32,7 @@ const date_min = date.getMinutes()
 const hora_atual = date_hour + ':' + date_min
 const data_atual = date_day + '/' + date_month_edited + '/' + date_year
 const dp_mes = document.querySelector('#dp_mes')
-const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+
 
 
 const pagina_cadastro = document.querySelector('.pagina-cadastro')
@@ -49,22 +44,6 @@ const pagina_busca = document.querySelector('.pagina-busca')
 //====================================================================
 
 var x = true
-var text = ''
-
-pesquisar_por_nome.addEventListener('keydown', (e) => {
-    nada_encontrado.style.display = 'none'
-    if (e.key == "Backspace") {
-        text = ''
-        pesquisar_por_nome.textContent = ''
-        limpaColunas()
-    } else {
-        text += e.key
-        limpaColunas()// cada vez que digitar letra
-        pesquisaPorNome()
-        pesquisaPorNomeRetorno()
-    }
-
-})
 
 //Esconde tela de cadastro e abre tela de busca
 btn_buscar_visitante.addEventListener('click', () => {
@@ -74,24 +53,16 @@ btn_buscar_visitante.addEventListener('click', () => {
 
 
 
-function validacao_input() {
-    if (input_andar.value <= 0 || input_andar.value > 9) {
-        console.log('erro');
-    } else if (input_andar.value > 0 && input_andar.value <= 9) {
-        console.log('ok');
-    }
-}
+//=============== PÁGINA DE CADASTRO ================================//
 
-//Cadastrar usuáriuo
-
+//------ ( Eventos ) -------//
 btn_cadastrar.addEventListener('click', () => {
-
     //Validação de formulário aqui   
-
     async function postData() {
         const name = input_nome.value
         const document = input_documento.value
         const floor = input_andar.value
+        let month 
         //Atribui a string do mês para ser salva no banco de dados
         if (date_month == 0) {
             month = "janeiro"
@@ -118,7 +89,6 @@ btn_cadastrar.addEventListener('click', () => {
         } else if (date_month == 11) {
             month = "dezembro"
         }
-        dp_mes.textContent = month
 
         const data = {
             data: data_atual,
@@ -142,10 +112,64 @@ btn_cadastrar.addEventListener('click', () => {
     postData()
 })
 
-//Procurar
-var mes_value = date_month_edited
+//HTML - select 'tipo de visita'
+var visita_selecionada = ''
+for (let i = 0; i < tipo_visita.length; i++) {
+    tipo_visita[i].addEventListener('click', (e) => {
+        if (e.target.value == 'horário agendado') {
+            visita_selecionada = e.target.value
+        } else if (e.target.value == 'prestação de serviços') {
+            visita_selecionada = e.target.value
+        } else if (e.target.value == 'entrega no andar') {
+            visita_selecionada = e.target.value
+        } else if (e.target.value == 'falar com funcionários') {
+            visita_selecionada = e.target.value
+        } else if (e.target.value == 'outro') {
+            visita_selecionada = e.target.value
+        }
+    })
+}
 
-var m = date_month_edited
+
+//===================================================================//
+
+
+
+
+//=============== PÁGINA DE BUSCA ===================================//
+const pesquisar_por_nome = document.querySelector('#pesquisar-por-nome')
+const anterior = document.querySelector('#anterior')
+const proximo = document.querySelector('#proximo')
+const dias = document.querySelectorAll('.dia')
+const procurar = document.querySelector('#procurar')
+const nada_encontrado = document.querySelector('.nada-encontrado')
+const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+var mes_value = date_month_edited
+var m = date_month
+var text = ''
+var month = ''
+
+
+//------ ( Eventos ) -------//
+
+//HTML - 'pesquisa rápida'
+pesquisar_por_nome.addEventListener('keydown', (e) => {
+    nada_encontrado.style.display = 'none'
+    if (e.key == "Backspace") {
+        text = ''
+        pesquisar_por_nome.textContent = ''
+        limpaColunas()
+    } else {
+        text += e.key
+        limpaColunas()// cada vez que digitar letra
+        pesquisaPorNome()
+        pesquisaPorNomeRetorno()
+    }
+
+})
+
+//HTML - 'date picker'
+// < mês anterior
 anterior.addEventListener('click', () => {
     if (m == 0) {
         m = m
@@ -154,9 +178,9 @@ anterior.addEventListener('click', () => {
         m -= 1
         dp_mes.textContent = array_meses[m]
         mes_value = m
-        console.log(mes_value);
     }
 })
+// > próximo mês 
 proximo.addEventListener('click', () => {
     if (m == 11) {
         m = m
@@ -165,48 +189,19 @@ proximo.addEventListener('click', () => {
         m = m + 1
         dp_mes.textContent = array_meses[m]
         mes_value = m
-        console.log(mes_value);
     }
 })
-function inserreMesAtual(){
-    if (date_month == 0) {
-        month = "janeiro"
-    } else if (date_month == 1) {
-        month = "fevereiro"
-    } else if (date_month == 2) {
-        month = "março"
-    } else if (date_month == 3) {
-        month = "abril"
-    } else if (date_month == 4) {
-        month = "maio"
-    } else if (date_month == 5) {
-        month = "junho"
-    } else if (date_month == 6) {
-        month = "julho"
-    } else if (date_month == 7) {
-        month = "agosto"
-    } else if (date_month == 8) {
-        month = "setembro"
-    } else if (date_month == 9) {
-        month = 'outubro'
-    } else if (date_month == 10) {
-        month = "novembro"
-    } else if (date_month == 11) {
-        month = "dezembro"
-    }
-    dp_mes.textContent = month
-}
-inserreMesAtual()
-
+//HTML - botão 'procurar'
 procurar.addEventListener('click', () => {
     nada_encontrado.style.display = 'none'
     //Janeiro
-    if (mes_value == 0) {
+    if (mes_value - 1 == 0) {
         async function getJaneiro() {
             const response = await fetch('/janeiro')
             const data = await response.json()
+
             if (dia_selecionado == "todos dias") {
-                //Limpa colunas e adiciona novos dados
+
                 limpaColunas()
                 todosDias(data)
             } else {
@@ -220,7 +215,7 @@ procurar.addEventListener('click', () => {
         }
         getJaneiro()
         //Fevereiro
-    } else if (mes_value == 1) {
+    } else if (mes_value - 1 == 1) {
         async function getFevereiro() {
             const response = await fetch('/fevereiro')
             const data = await response.json()
@@ -239,7 +234,7 @@ procurar.addEventListener('click', () => {
         }
         getFevereiro()
         //Março
-    } else if (mes_value == 2) {
+    } else if (mes_value - 1 == 2) {
         async function getMarço() {
             const response = await fetch('/marco')
             const data = await response.json()
@@ -259,7 +254,7 @@ procurar.addEventListener('click', () => {
         }
         getMarço()
         //Abril
-    } else if (mes_value == 3) {
+    } else if (mes_value - 1 == 3) {
         async function getAbril() {
             const response = await fetch('/abril')
             const data = await response.json()
@@ -279,7 +274,7 @@ procurar.addEventListener('click', () => {
         }
         getAbril()
         //Maio
-    } else if (mes_value == 4) {
+    } else if (mes_value - 1 == 4) {
         async function getMaio() {
             const response = await fetch('/maio')
             const data = await response.json()
@@ -299,7 +294,7 @@ procurar.addEventListener('click', () => {
         }
         getMaio()
         //Junho
-    } else if (mes_value == 5) {
+    } else if (mes_value - 1 == 5) {
         async function getJunho() {
             const response = await fetch('/junho')
             const data = await response.json()
@@ -319,7 +314,7 @@ procurar.addEventListener('click', () => {
         }
         getJunho()
         //Julho
-    } else if (mes_value == 6) {
+    } else if (mes_value - 1 == 6) {
         async function getJulho() {
             const response = await fetch('/julho')
             const data = await response.json()
@@ -339,7 +334,7 @@ procurar.addEventListener('click', () => {
         }
         getJulho()
         //Agosto
-    } else if (mes_value == 7) {
+    } else if (mes_value - 1 == 7) {
         async function getAgosto() {
             const response = await fetch('/agosto')
             const data = await response.json()
@@ -359,7 +354,7 @@ procurar.addEventListener('click', () => {
         }
         getAgosto()
         //Setembro
-    } else if (mes_value == 8) {
+    } else if (mes_value - 1 == 8) {
         async function getSetembro() {
             const response = await fetch('/setembro')
             const data = await response.json()
@@ -379,7 +374,7 @@ procurar.addEventListener('click', () => {
         }
         getSetembro()
         //Outubro
-    } else if (mes_value == 9) {
+    } else if (mes_value - 1 == 9) {
         async function getOutubro() {
             const response = await fetch('/outubro')
             const data = await response.json()
@@ -399,7 +394,7 @@ procurar.addEventListener('click', () => {
         }
         getOutubro()
         //Novembro
-    } else if (mes_value == 10) {
+    } else if (mes_value - 1 == 10) {
         async function getNovembro() {
             const response = await fetch('Novembro')
             const data = await response.json()
@@ -440,10 +435,60 @@ procurar.addEventListener('click', () => {
         getDezembro()
     }
 })
+//------------------------//
 
 
-//                          ( Funções )
-//====================================================================
+
+//------ ( Loops ) -------//
+
+//HTML - dia 'date picker'
+var dia_selecionado = 0
+for (let i = 0; i < dias.length; i++) {
+    dias[i].addEventListener('click', (e) => {
+        dia_selecionado = e.target.innerHTML
+        clean_backgroundd()
+        dias[i].style.backgroundColor = '#1ABDA6'
+        dias[i].style.color = 'white'
+    })
+}
+//------------------------//
+
+
+
+//------ ( Funções ) -------//
+
+/*Na página de busca, esta função imprime 
+o mês atual na interface do date picker*/
+function insereMesAtual(){
+    if (date_month == 0) {
+        month = "janeiro"
+    } else if (date_month == 1) {
+        month = "fevereiro"
+    } else if (date_month == 2) {
+        month = "março"
+    } else if (date_month == 3) {
+        month = "abril"
+    } else if (date_month == 4) {
+        month = "maio"
+    } else if (date_month == 5) {
+        month = "junho"
+    } else if (date_month == 6) {
+        month = "julho"
+    } else if (date_month == 7) {
+        month = "agosto"
+    } else if (date_month == 8) {
+        month = "setembro"
+    } else if (date_month == 9) {
+        month = 'outubro'
+    } else if (date_month == 10) {
+        month = "novembro"
+    } else if (date_month == 11) {
+        month = "dezembro"
+        //mes = 11
+    }
+    dp_mes.textContent = month
+}
+insereMesAtual()
 
 async function pesquisaPorNome() {
     var jso = { name: text }
@@ -464,41 +509,7 @@ async function pesquisaPorNomeRetorno() {
 
 }
 
-//Limpar colunas
-var verifica_child = 0
-function todosDias(data) {
-    for (i of data) {
-        const visitante_data = i.data
-        const visitante_hora = i.hora
-        const visitante_nome = i.name
-        const visitante_doc = i.documento
-        const visitante_andar = i.andar
-        const tipoVisita = i.tipo_visita
 
-        data_div = document.createElement('div')
-        hora_div = document.createElement('div')
-        nome_div = document.createElement('div')
-        doc_div = document.createElement('div')
-        andar_div = document.createElement('div')
-        tipo_visita_div = document.createElement('div')
-
-        data_div.textContent = visitante_data
-        hora_div.textContent = visitante_hora
-        nome_div.textContent = visitante_nome
-        doc_div.textContent = visitante_doc
-        andar_div.textContent = visitante_andar
-        tipo_visita_div.textContent = tipoVisita
-
-        col_data.appendChild(data_div)
-        col_hora.appendChild(hora_div)
-        col_nome.appendChild(nome_div)
-        col_doc.appendChild(doc_div)
-        col_andar.appendChild(andar_div)
-        col_visita.appendChild(tipo_visita_div)
-        verifica_child = 1
-    }
-
-}
 
 //Limpa colunas
 function limpaColunas() {
@@ -551,11 +562,40 @@ function insereDadosColunas(data_filtrada) {
     }
 }
 
-var month = ''
+var verifica_child = 0
+function todosDias(data) {
+    for (i of data) {
+        const visitante_data = i.data
+        const visitante_hora = i.hora
+        const visitante_nome = i.name
+        const visitante_doc = i.documento
+        const visitante_andar = i.andar
+        const tipoVisita = i.tipo_visita
 
+        data_div = document.createElement('div')
+        hora_div = document.createElement('div')
+        nome_div = document.createElement('div')
+        doc_div = document.createElement('div')
+        andar_div = document.createElement('div')
+        tipo_visita_div = document.createElement('div')
 
-//                       ( SELECTS )            
-//====================================================================
+        data_div.textContent = visitante_data
+        hora_div.textContent = visitante_hora
+        nome_div.textContent = visitante_nome
+        doc_div.textContent = visitante_doc
+        andar_div.textContent = visitante_andar
+        tipo_visita_div.textContent = tipoVisita
+
+        col_data.appendChild(data_div)
+        col_hora.appendChild(hora_div)
+        col_nome.appendChild(nome_div)
+        col_doc.appendChild(doc_div)
+        col_andar.appendChild(andar_div)
+        col_visita.appendChild(tipo_visita_div)
+        verifica_child = 1
+    }
+
+}
 
 
 function clean_backgroundd() {
@@ -563,31 +603,5 @@ function clean_backgroundd() {
         i.style.backgroundColor = '#666666'
     }
 }
-//Dia //estilo botoes pesquisa
-var dia_selecionado = 0
-for (let i = 0; i < dias.length; i++) {
-    dias[i].addEventListener('click', (e) => {
-        dia_selecionado = e.target.innerHTML
-        clean_backgroundd()
-        dias[i].style.backgroundColor = '#1ABDA6'
-        dias[i].style.color = 'white'
-    })
-}
+//------------------------//
 
-//Tipo visita
-var visita_selecionada = ''
-for (let i = 0; i < tipo_visita.length; i++) {
-    tipo_visita[i].addEventListener('click', (e) => {
-        if (e.target.value == 'horário agendado') {
-            visita_selecionada = e.target.value
-        } else if (e.target.value == 'prestação de serviços') {
-            visita_selecionada = e.target.value
-        } else if (e.target.value == 'entrega no andar') {
-            visita_selecionada = e.target.value
-        } else if (e.target.value == 'falar com funcionários') {
-            visita_selecionada = e.target.value
-        } else if (e.target.value == 'outro') {
-            visita_selecionada = e.target.value
-        }
-    })
-}

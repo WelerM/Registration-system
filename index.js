@@ -3,7 +3,7 @@ const express = require('express')
 const Datastore = require('nedb')
 const app = express()
 app.listen(4000, () => console.log('http://localhost:4000/'))
-app.use(express.static('public'))//Links with index.html
+app.use(express.static('public'))
 app.use(express.json({ limit: '1mb' }))
 const database = new Datastore('database.db')
 database.loadDatabase()
@@ -15,6 +15,7 @@ app.post('/porNome', (req, res) => {
     const obj = req.body
     const name = obj.name
     obj.name = new RegExp(name)
+    
     database.find(obj, (err, data) => {
         if (err) {
             res.end()
@@ -30,22 +31,6 @@ app.get('/porNome', (req, res) => {
     res.json(dados)
 })
 
-
-/* const obj = req.body
-const mes = obj.mês
-obj.mês = new RegExp(mes)
-
-database.find(obj, (err, data) => {
-    if (err) {
-        res.end()
-        return
-    }
-    res.json(data)
-    console.log(data);
-}) */
-
-
-// test.replace(/\"/g, "")
 
 
 
@@ -212,3 +197,19 @@ app.post('/api', (req, res) => {
 
 
 
+
+/* const obj = req.body
+const mes = obj.mês
+obj.mês = new RegExp(mes)
+
+database.find(obj, (err, data) => {
+    if (err) {
+        res.end()
+        return
+    }
+    res.json(data)
+    console.log(data);
+}) */
+
+
+// test.replace(/\"/g, "")
