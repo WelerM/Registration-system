@@ -4,8 +4,9 @@ const left_menu = document.querySelector('.left-menu')
 const input_nome = document.querySelector('#input-nome')
 const input_documento = document.querySelector('#input-documento')
 const input_andar = document.querySelector('#input-andar')
-const btn_cadastrar = document.querySelector('#btn_cadastrar')
 const tipo_visita = document.querySelectorAll('#tipo-visita')
+const cadastro_warning = document.querySelector('.cadastro-warning-hide')
+const btn_cadastrar = document.querySelector('#btn_cadastrar')
 
 //===================  PAGINA BUSCA ========================//
 
@@ -36,7 +37,10 @@ const dp_mes = document.querySelector('#dp_mes')
 
 
 const pagina_cadastro = document.querySelector('.pagina-cadastro')
+
 const btn_buscar_visitante = document.querySelector('#btn-buscar-visitante')
+const icon_buscar_visitante = document.querySelector('.icon-buscar-visitante')
+
 const pagina_busca = document.querySelector('.pagina-busca')
 
 
@@ -45,24 +49,53 @@ const pagina_busca = document.querySelector('.pagina-busca')
 
 var x = true
 
+//MENU
+
 //Esconde tela de cadastro e abre tela de busca
 btn_buscar_visitante.addEventListener('click', () => {
     pagina_cadastro.classList.toggle('pagina-cadastro-hide')
     pagina_busca.classList.toggle('pagina-busca-on')
+    function handle_btn_text(){
+        btn_buscar_visitante.textContent='PÁGINAL'
+      //  icon_buscar_visitante.style.backgroundColor='red'
+ //       icon_buscar_visitante.src='../img/home.png'
+    }
+ //   handle_btn_text()
 })
 
 
 
 //=============== PÁGINA DE CADASTRO ================================//
+//Ao completar, colocar dentro do if do btn_Cadastrar
+
+var tipo_visita_control = true
 
 //------ ( Eventos ) -------//
 btn_cadastrar.addEventListener('click', () => {
-    //Validação de formulário aqui   
+    //Validação do formulário
+    for (let i = 0; i < tipo_visita.length; i++) {
+        tipo_visita[i].addEventListener('click', (e) => {
+            tipo_visita_control = false
+
+        })
+    }
+    if (input_nome.value && input_documento.value && input_andar.value != '') {
+        if(tipo_visita_control == false){
+           // postData()
+           console.log('ok');
+            tipo_visita_control = true
+            cadastro_warning.classList.remove('cadastro-warning-show')
+        }
+    } else {
+        console.log('completar')
+        cadastro_warning.classList.add('cadastro-warning-show')
+    }
+
     async function postData() {
         const name = input_nome.value
         const document = input_documento.value
         const floor = input_andar.value
-        let month 
+        let month
         //Atribui a string do mês para ser salva no banco de dados
         if (date_month == 0) {
             month = "janeiro"
@@ -109,7 +142,7 @@ btn_cadastrar.addEventListener('click', () => {
         }
         fetch('/api', options)
     }
-    postData()
+    //postData()
 })
 
 //HTML - select 'tipo de visita'
@@ -138,6 +171,7 @@ for (let i = 0; i < tipo_visita.length; i++) {
 
 //=============== PÁGINA DE BUSCA ===================================//
 const pesquisar_por_nome = document.querySelector('#pesquisar-por-nome')
+const pesquisar_por_documento = document.querySelector('#pesquisar-por-documento')
 const anterior = document.querySelector('#anterior')
 const proximo = document.querySelector('#proximo')
 const dias = document.querySelectorAll('.dia')
@@ -164,6 +198,20 @@ pesquisar_por_nome.addEventListener('keydown', (e) => {
         limpaColunas()// cada vez que digitar letra
         pesquisaPorNome()
         pesquisaPorNomeRetorno()
+    }
+
+})
+pesquisar_por_documento.addEventListener('keydown', (e) => {
+    nada_encontrado.style.display = 'none'
+    if (e.key == "Backspace") {
+        text = ''
+        pesquisar_por_documento.textContent = ''
+        limpaColunas()
+    } else {
+        text += e.key
+        limpaColunas()// cada vez que digitar letra
+        pesquisaPorDoc()
+        pesquisaPorDocRetorno()
     }
 
 })
@@ -459,7 +507,7 @@ for (let i = 0; i < dias.length; i++) {
 
 /*Na página de busca, esta função imprime 
 o mês atual na interface do date picker*/
-function insereMesAtual(){
+function insereMesAtual() {
     if (date_month == 0) {
         month = "janeiro"
     } else if (date_month == 1) {
@@ -490,23 +538,43 @@ function insereMesAtual(){
 }
 insereMesAtual()
 
+
+//==== PESQUISA RÁPIDA =====//
 async function pesquisaPorNome() {
-    var jso = { name: text }
+    let obj = { name: text }
     const options = {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(jso)
+        body: JSON.stringify(obj)
     }
     fetch('/porNome', options)
 }
-
 async function pesquisaPorNomeRetorno() {
     const response = await fetch('/porNome')
     const data = await response.json()
     todosDias(data)
 
+}
+
+
+
+async function pesquisaPorDoc(){
+    let obj = { documento: text }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }
+    fetch('/porDoc', options)
+}
+async function pesquisaPorDocRetorno(){
+    const response = await fetch('/porDoc')
+    const data = await response.json()
+    todosDias(data)
 }
 
 

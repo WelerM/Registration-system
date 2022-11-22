@@ -11,11 +11,11 @@ database.loadDatabase()
 //Data query
 var dados = ''
 
+//Pesquisa rápida
 app.post('/porNome', (req, res) => {
     const obj = req.body
     const name = obj.name
     obj.name = new RegExp(name)
-    
     database.find(obj, (err, data) => {
         if (err) {
             res.end()
@@ -25,15 +25,29 @@ app.post('/porNome', (req, res) => {
         dados = data
     })
 })
-
-
 app.get('/porNome', (req, res) => {
     res.json(dados)
 })
 
+app.post('/porDoc', (req, res) =>{
+    const obj = req.body
+    const doc = obj.documento
+    obj.documento = new RegExp(doc)
+    database.find(obj, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)
+        dados = data
+    })
+})
+app.get('/porDoc', (req, res) => {
+    res.json(dados)
+})
 
 
-
+//Pesquisa por meses
 app.get('/janeiro', (req, res) => {
     database.find({ mês: "janeiro" }, (err, data) => {
         if (err) {

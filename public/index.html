@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/pagina-cadastro.css">
     <link rel="stylesheet" href="./styles/pagina-busca.css">
-    <link rel="stylesheet" href="./styles/pagina-ajuda.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     <script src="./js/script.js" defer></script>
 </head>
 
@@ -18,12 +19,13 @@
 
         <div class="left-menu">
             <h1>MENU</h1>
-            <button id="btn-buscar-visitante">BUSCAR VISITANTE</button>
+            <button id="btn-buscar-visitante"> <img class="icon-buscar-visitante" src="./img/search.png" alt=""> BUSCAR VISITANTE</button>
+            <button id="btn-configuracoes"> <img class="icon-configuracoes" src="./img/gear.png" alt=""> CONFIGURAÇÕES</button>
         </div>
 
         <div class="pagina-cadastro">
             <div class="pagina-cadastro-container">
-                <h1 id="input-h1">sistema de cadastro</h1>
+                <h1 id="input-h1">inserir dados</h1>
 
                 <div class="left-content-items">
                     <p>Nome</p>
@@ -45,6 +47,7 @@
                         <img src="./img/camera.png" alt="">
                         <button id="tirar-foto">TIRAR FOTO</button>
                     </div> -->
+                    <p class="cadastro-warning-hide">É necessário preencher todos os campos!</p>
                     <button id="btn_cadastrar">CADASTRAR</button>
                 </div>
             </div>

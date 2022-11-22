@@ -17,7 +17,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    background-color: rgba(128, 128, 128, 0.356);
+    background-color:#979797;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.438);
 }
 .busca-options-left-container {
     display: flex;
@@ -85,7 +86,7 @@
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 6px;
     transition: 0.7s;
 }
 
@@ -102,6 +103,9 @@
     padding: 0px 5px;
     user-select: none;
     color: white;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 2px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.291);
 
 }
 .dia:hover {
@@ -190,8 +194,6 @@
 
 
 
-
-
 #select-dia {
     height: 30px;
     background-color: goldenrod;
@@ -230,6 +232,7 @@
 .output-screen {
     border-radius: 5px;
     text-align: center;
+
 }
 
 #output-h2 {

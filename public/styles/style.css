@@ -17,11 +17,11 @@ body {
     height: 100vh;
     margin: auto;
     background-color: black;
-    background-color: #D7DBD6;
+    background-color:#b0b0b0;
     color: rgba(0, 0, 0, 0.641);
 }
 .left-menu{
-    width: 200px;
+    width: 300px;
     background-color: gray;
     background-color:#1ABDA6;
     height: 100%;
@@ -29,16 +29,60 @@ body {
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding: 20px 0px
+    padding: 20px 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.607);
 }
-.left-menu > button{
-    width: 200px;
-    height: 60px;
+#btn-buscar-visitante{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.293);
     font-size: 15px;
     border: none;
-    font-size: 17px;
-    background-color: #75ebdb;
+    font-size: 16px;
+    background: linear-gradient(95deg, #58bcae, #59c2b6);
     color: black;
     letter-spacing: 0.5PX;
     outline: none;
+    position: relative;
+    padding: 0px 15px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.222);
+    transition: 0.5s;
+}
+#btn-configuracoes{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.293);
+    font-size: 15px;
+    border: none;
+    font-size: 16px;
+    background: linear-gradient(95deg, #58bcae, #59c2b6);
+    color: black;
+    letter-spacing: 0.5PX;
+    outline: none;
+    position: relative;
+    padding: 0px 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    
+    transition: 0.5s;
+
+}
+
+.icon-buscar-visitante,
+.icon-configuracoes{
+    width: 30px;
+    height: 30px;
+}
+#btn-buscar-visitante:hover,
+#btn-configuracoes:hover{
+    cursor: pointer;
+    top: 1px;
+    background: linear-gradient(95deg, #59c2b6,  #66e2d1) ;
+    transition: 0.5s;
 }
