@@ -1,58 +1,59 @@
 *{
     font-family: 'Helvetica';
 }
-.pagina-cadastro {
-    width: 100%;
+
+.registration-interface{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 5px;
-    font-size: 13px;
-
-}
-.pagina-cadastro-hide{
-    display: none;
-}
-.pagina-cadastro-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-    border-radius: 10px;
-    background-color:#979797;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.438);
-}
-#input-h1 {
-    font-size: 47px;
+    gap: 5px;
+    padding: 10px 25px;
+    width: 30%;
+    padding-top: 40px;
+    background-color: rgba(53, 53, 53, 0.757);
+    box-shadow: 10px 0px 15px rgba(255, 255, 255, 0.065);
+    border-right: 1px solid rgba(255, 255, 255, 0.406);
+    height: 100vh;
 }
 
-.left-content-items {
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-}
-
-.left-content-items>input,
-select {
+.registration-interface > input{
     width: 100%;
     height: 40px;
-    background-color: rgba(56, 56, 56, 0.516);
+    background-color: rgba(0, 0, 0, 0.356);
     padding-left: 10px;
     outline: none;
     font-size: 18px;
     border: none;
     border-radius: 5px;
     letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.128);
+}
+
+
+.registration-interface > select {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.356);
+    padding-left: 10px;
+    outline: none;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.644);
+    border: 1px solid rgba(255, 255, 255, 0.128);
 }
 select:hover{
     cursor: pointer;
 }
-
-.left-content-items>p {
+option{
+    background-color: rgba(0, 0, 0, 0.824);
+    border: none;
+}
+.registration-interface>h4 {
+    text-align: center;
+}
+.registration-interface>p {
     margin-bottom: 5px;
     position: relative;
     left: 3px;
@@ -94,20 +95,8 @@ span {
 }
 
 
-.foto-container{
-    display: flex;
-    gap: 20px;
 
-    align-items: center;
-}
-#tirar-foto{
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 20%;
-    font-size: 20px;
-    background-color: #1ABDA6;
-}
+
 .cadastro-warning-hide{
     color: red;
     font-size: 16px;
@@ -118,7 +107,25 @@ span {
 .cadastro-warning-show{
     display: block;
 }
-
+#limpar-dados{
+    width: 50%;
+    padding: 5px 5px;
+    font-size: 15px;
+    color: black;
+    position: relative;
+    right: 0px;
+    background-color: #1ABDA6;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.194);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.518);
+    font-weight: bold;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}   
+#limpar-dados:hover{
+    cursor: pointer;
+    top: 1px;
+}
 #btn_cadastrar {
     height: 40px;
     width: 100%;
@@ -128,13 +135,18 @@ span {
     border-radius: 5px;
     font-size: 20px;
     position: relative;
-    margin-top: 20px;
+    margin-top: 15px;
     border: 1px solid rgba(0, 0, 0, 0.194);
-
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.292);
 }
 
 #btn_cadastrar:hover {
     cursor: pointer;
     background-color: #19b19d;
     top: 1px;
+}
+
+
+input{
+    color: white;
 }

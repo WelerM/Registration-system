@@ -47,6 +47,26 @@ app.get('/porDoc', (req, res) => {
 })
 
 
+app.post('/ReAssignGuest',( req,res) =>{
+    const data = req.body
+    res.json(data)
+    database.insert(data)
+})
+
+//Exemplo:
+/* app.post('/api', (req, res) => {
+    const data = req.body
+    // console.log(req.body);
+    res.json(data)//Not using it results in Uncaught (in promise) TypeError: NetworkError when attempting to fetch resource.  
+    //console.log(data);//Logs in SERVIDOR
+    database.insert(data)
+
+}) */
+
+
+
+
+
 //Pesquisa por meses
 app.get('/janeiro', (req, res) => {
     database.find({ mês: "janeiro" }, (err, data) => {
@@ -192,7 +212,7 @@ app.get('/dia', (req, res) => {
 //===============================================
 
 
-//Data entry
+//Data entry (btn cadastrar)
 app.post('/api', (req, res) => {
     const data = req.body
     // console.log(req.body);

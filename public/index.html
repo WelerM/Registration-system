@@ -7,139 +7,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/pagina-cadastro.css">
-    <link rel="stylesheet" href="./styles/pagina-busca.css">
+    <link rel="stylesheet" href="./styles/registration-interface.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
     <script src="./js/script.js" defer></script>
 </head>
 
 <body>
-    <div class="main-container">
-
-        <div class="left-menu">
-            <h1>MENU</h1>
-            <button id="btn-buscar-visitante"> <img class="icon-buscar-visitante" src="./img/search.png" alt=""> BUSCAR VISITANTE</button>
-            <button id="btn-configuracoes"> <img class="icon-configuracoes" src="./img/gear.png" alt=""> CONFIGURAÇÕES</button>
+    <header>
+        <h3>SISTEMA DE CONTROLE</h3>
+        <div class="header-adress-info">
+            <ul>
+                <li>Porto Alegre - Av. Otávio Rocha 161, Ed. Capelli. - CEP:90020151</li>
+                <!--                 <li>20 graus</li> -->
+            </ul>
         </div>
-
-        <div class="pagina-cadastro">
-            <div class="pagina-cadastro-container">
-                <h1 id="input-h1">inserir dados</h1>
-
-                <div class="left-content-items">
-                    <p>Nome</p>
-                    <input id="input-nome" type="text" placeholder="nome" required>
-                    <p>Documento</p>
-                    <input id="input-documento" type="text" placeholder="documento">
-                    <p>Andar</p>
-                    <input id="input-andar" type="text" placeholder="andar">
-                    <p>Tipo de visita</p>
-                    <select id="">
-                        <option selected disabled>tipo de visita</option>
-                        <option id="tipo-visita">horário agendado</option>
-                        <option id="tipo-visita">prestação de serviços</option>
-                        <option id="tipo-visita">entrega no andar</option>
-                        <option id="tipo-visita">falar com funcionários</option>
-                        <option id="tipo-visita">outro</option>
-                    </select>
-                  <!--   <div class="foto-container">
-                        <img src="./img/camera.png" alt="">
-                        <button id="tirar-foto">TIRAR FOTO</button>
-                    </div> -->
-                    <p class="cadastro-warning-hide">É necessário preencher todos os campos!</p>
-                    <button id="btn_cadastrar">CADASTRAR</button>
-                </div>
-            </div>
-
-
+        <div class="header-date-info">
+            <ul>
+                <li>Hora: <span id="header-hour"></span></li>
+            </ul>
         </div>
+    </header>
 
-        <div class="pagina-busca">
-            <div class="pagina-busca-container">
-                <div class="output-filtro-container">
-                    <div class="busca-options-left-container">
-                        <h3>pesquisa rápida</h3>
-                        <input id="pesquisar-por-nome" type="text" placeholder="Pesquisar por nome">
-                        <input id="pesquisar-por-documento" type="text" placeholder="Pesquisar por documento">
+    <div class="main-interface">
+
+        <div class="registration-interface">
+            <h4>CADASTRAR NOVO VISITANTE</h3>
+                <p>Nome</p>
+                <input id="input-nome" type="text" placeholder="nome" required>
+                <p>Documento</p>
+                <input id="input-documento" type="text" placeholder="documento">
+                <p>Andar</p>
+                <input id="input-andar" type="text" placeholder="andar">
+                <p>Tipo de visita</p>
+                <select id="">
+                    <option selected disabled>tipo de visita</option>
+                    <option id="tipo-visita">horário agendado</option>
+                    <option id="tipo-visita">prestação de serviços</option>
+                    <option id="tipo-visita">entrega no andar</option>
+                    <option id="tipo-visita">falar com funcionários</option>
+                    <option id="tipo-visita">outro</option>
+                </select>
+                <p class="cadastro-warning-hide">É necessário preencher todos os campos!</p>
+                <button id="limpar-dados">LIMPAR DADOS</button>
+                <button id="btn_cadastrar">CADASTRAR</button>
+                <!-- 
+                <div class="left-menu">
+                    <h1>MENU</h1>
+                    <div id="btn-configuracoes">
+                        <img class="icon-configuracoes" src="./img/gear.png" alt="">
+                        <p>CONFIGURAÇÕES</p>
                     </div>
-                    <div class="busca-options-right-container">
-                        <h3>pesquisa por data</h3>
-                        <div class="dia-container">
-                            <div class="dia-container-mes">
-                                <img src="./img/arrow.png" id="anterior">
-                                <p id="dp_mes"></p>
-                                <img src="./img/arrow.png" id="proximo">
-                            </div>
-                            <div class="dia-container-dia">
-                                <div class="dia" id="todos-dias">todos dias</div>
-                                <div class="dia">01</div>
-                                <div class="dia">02</div>
-                                <div class="dia">03</div>
-                                <div class="dia">04</div>
-                                <div class="dia">05</div>
-                                <div class="dia">06</div>
-                                <div class="dia">07</div>
-                                <div class="dia">08</div>
-                                <div class="dia">09</div>
-                                <div class="dia">10</div>
-                                <div class="dia">11</div>
-                                <div class="dia">12</div>
-                                <div class="dia">13</div>
-                                <div class="dia">14</div>
-                                <div class="dia">15</div>
-                                <div class="dia">16</div>
-                                <div class="dia">17</div>
-                                <div class="dia">18</div>
-                                <div class="dia">19</div>
-                                <div class="dia">20</div>
-                                <div class="dia">21</div>
-                                <div class="dia">22</div>
-                                <div class="dia">23</div>
-                                <div class="dia">24</div>
-                                <div class="dia">25</div>
-                                <div class="dia">26</div>
-                                <div class="dia">27</div>
-                                <div class="dia">28</div>
-                                <div class="dia">29</div>
-                                <div class="dia">30</div>
-                                <div class="dia">31</div>
-                            </div>
+                </div> -->
+
+        </div>
+
+        <div class="pagina-busca-container">
+            <div class="output-filtro-container">
+                <div class="busca-options-left-container">
+                    <h3>pesquisa rápida</h3>
+                    <input id="pesquisar-por-nome" type="text" placeholder="Pesquisar por nome">
+                    <input id="pesquisar-por-documento" type="text" placeholder="Pesquisar por documento">
+                </div>
+                <div class="busca-options-right-container">
+                    <h3>pesquisa por data</h3>
+                    <div class="dia-container">
+                        <div class="dia-container-mes">
+                            <img src="./img/arrow.png" id="anterior">
+                            <p id="dp_mes"></p>
+                            <img src="./img/arrow.png" id="proximo">
                         </div>
-                        <button id="procurar">PROCURAR</button>
+                        <div class="dia-container-dia">
+                            <div class="dia" id="todos-dias">todos dias</div>
+                            <div class="dia">01</div>
+                            <div class="dia">02</div>
+                            <div class="dia">03</div>
+                            <div class="dia">04</div>
+                            <div class="dia">05</div>
+                            <div class="dia">06</div>
+                            <div class="dia">07</div>
+                            <div class="dia">08</div>
+                            <div class="dia">09</div>
+                            <div class="dia">10</div>
+                            <div class="dia">11</div>
+                            <div class="dia">12</div>
+                            <div class="dia">13</div>
+                            <div class="dia">14</div>
+                            <div class="dia">15</div>
+                            <div class="dia">16</div>
+                            <div class="dia">17</div>
+                            <div class="dia">18</div>
+                            <div class="dia">19</div>
+                            <div class="dia">20</div>
+                            <div class="dia">21</div>
+                            <div class="dia">22</div>
+                            <div class="dia">23</div>
+                            <div class="dia">24</div>
+                            <div class="dia">25</div>
+                            <div class="dia">26</div>
+                            <div class="dia">27</div>
+                            <div class="dia">28</div>
+                            <div class="dia">29</div>
+                            <div class="dia">30</div>
+                            <div class="dia">31</div>
+                        </div>
                     </div>
+                    <button id="procurar">PROCURAR</button>
+                </div>
+            </div>
+
+            <div class="output-screen">
+                <h3 id="output-h2">resultado</h3>
+                <div class="output-screen-container-titles">
+                    <div class="col-title">data</div>
+                    <div class="col-title">hora</div>
+                    <div class="col-title">nome</div>
+                    <div class="col-title">documento</div>
+                    <div class="col-title">andar</div>
+                    <div class="col-title-visita">tipo de visita</div>
                 </div>
 
-                <div class="output-screen">
-                    <h3 id="output-h2">resultado</h3>
-                    <div class="output-screen-container-titles">
-                        <div class="col-title">data</div>
-                        <div class="col-title">hora</div>
-                        <div class="col-title">nome</div>
-                        <div class="col-title">documento</div>
-                        <div class="col-title">andar</div>
-                        <div class="col-title-visita">tipo de visita</div>
-                    </div>
-                    <div class="nada-encontrado">
-                        <h4>Nenhum dado encontrado</h4>
-                    </div>
-                    <!-- Colunas -->
-                    <div class="colunas-container">
-                        <div id="col" class="output-col-data"></div>
-                        <div id="col" class="output-col-hora"></div>
-                        <div id="col" class="output-col-nome"></div>
-                        <div id="col" class="output-col-documento"></div>
-                        <div id="col" class="output-col-andar"></div>
-                        <div id="col" class="output-col-visita"></div>
-                    </div>
+                <div class="nada-encontrado">
+                    <h4>Nenhum dado encontrado</h4>
+                </div>
+
+                <!-- Colunas -->
+                <div class="colunas-container">
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
+    <div class="confirm-registration-screen">
+        <h1>novo cadastro para</h1>
+        <h3>Nome: <span id="confirm_name"></span></h3>
+        <h3>Documento: <span id="confirm_doc"></span></h3>
+        <h3>Andar: <span id="confirm_floor"></span></h3>
+        <div class="confirm-registration-btns">
+            <button id="btn-confirmar">CONFIRMAR</button>
+            <button id="btn-cancelar">CANCELAR</button>
+        </div>
+    </div>
+
+    <div class="confirm-re-registration-screen">
+        <h1>novo cadastro para</h1>
+        <h3>Nome: <span id="re_confirm_name"> </span></h3>
+        <h3>Documento: <span id="re_confirm_doc"> </span></h3>
+        <h3>Andar: <span id="re_confirm_floor"> </span></h3>
+        <div class="re-confirm-registration-btns">
+            <button id="re_btn_confirmar">CONFIRMAR</button>
+            <button id="re_btn_cancelar">CANCELAR</button>
+        </div>
+    </div>
 </body>
 
 </html>
