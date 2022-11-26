@@ -1,9 +1,10 @@
 # Sistema-de-Cadastro - Em desenvolvimento
 
 Tecnologias:
- Interface: HTML,CSS, JavaScript /
- Servidor: NodeJS, Express /
- Banco de dados: Nedb /
+ JavaScript /
+ NodeJS / Express /
+ Nedb (database) /
+ HTML / CSS
 
 ![sistema](https://user-images.githubusercontent.com/99507279/204095666-8099f5a1-3be5-4cfb-aae8-28b73cfbbd6c.png)
 
