@@ -1,4 +1,4 @@
-# Sistema-de-Cadastro - Em desenvolvimento
+# Sistema de Cadastro - Em desenvolvimento
 
 Tecnologias: 
  JavaScript /
