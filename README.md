@@ -1,6 +1,6 @@
 # Sistema-de-Cadastro - Em desenvolvimento
 
-Tecnologias:
+Tecnologias: 
  JavaScript /
  NodeJS / Express /
  Nedb (database) /
