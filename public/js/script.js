@@ -77,16 +77,6 @@ var obj_re_entry = {
     mês: '',
     dia: ''
 }
-var reAssingData = {
-    data: '',
-    hora: '',
-    name: '',
-    documento: '',
-    andar: '',
-    tipo_visita: '',
-    mês: '',
-    dia: ''
-}
 
 //=============== HEADER ==============================================//
 const header_hour = document.querySelector('#header-hour')
@@ -652,25 +642,30 @@ function insereDadosColunas(data_filtrada) {
             colunas_container.appendChild(row)
             limpa_colunas_control = false
         }
+
+        //Re entry of some chosen guest
+        let row_total = document.querySelectorAll('.row')
+        for (let i = 0; i < row_total.length; i++) {
+            row_total[i].addEventListener('click', () => {
+                row_array_filter = []
+                row_cols_data = []
+                row_array_filter.push(row_total[i].childNodes)
+
+                for (data of row_array_filter[0]) {
+                    row_cols_data.push(data.innerHTML)
+                }
+                //Shows re registration confirm screen
+                re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
+                re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
+                document.body.scrollTop=0
+                document.documentElement.scrollTop=0
+            })
+        }
+
+
     }
 }
 
-
-
-/* re_confirm_name.textContent=row_cols_data[2]
-re_confirm_doc.textContent=row_cols_data[3]
-re_confirm_floor.textContent=row_cols_data[4] 
-re_pop_up_btn_confirm.addEventListener('click', () => {
-    re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
-    re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
-   reAssignGuest()
-})
-
-//Closes re registration screen
-re_pop_up_btn_cancel.addEventListener('click', (e) =>{
-    re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
-    re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
-}) */
 
 
 //When called, creates table and inserts entire date from
@@ -721,55 +716,79 @@ function todosDias(data) {
         limpa_colunas_control = false
     }
     //Re entry of some chosen guest
-    row_total = document.querySelectorAll('.row')
+    let row_total = document.querySelectorAll('.row')
     for (let i = 0; i < row_total.length; i++) {
         row_total[i].addEventListener('click', () => {
             row_array_filter = []
             row_cols_data = []
             row_array_filter.push(row_total[i].childNodes)
+
             for (data of row_array_filter[0]) {
                 row_cols_data.push(data.innerHTML)
             }
-          
-           
             //Shows re registration confirm screen
             re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
             re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
-           
-
-            async function reAssignGuest() {
-                reAssingData.data = ''
-                reAssingData.hora = ''
-                reAssingData.name = ''
-                reAssingData.documento = ''
-                reAssingData.andar = ''
-                reAssingData.tipo_visita = ''
-                reAssingData.mês = ''
-                reAssingData.dia = ''
-
-                reAssingData.data = data_atual
-                reAssingData.hora = hora_atual
-                reAssingData.name = row_cols_data[2]
-                reAssingData.documento = row_cols_data[3]
-                reAssingData.andar = row_cols_data[4]
-                reAssingData.tipo_visita = row_cols_data[5]
-                reAssingData.mês = month
-                reAssingData.dia = date_day
-
-                const options = {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(reAssingData)
-                }
-                fetch('/ReAssignGuest', options)
-            }
-             reAssignGuest()
-
+            re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
+            re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
+            document.body.scrollTop=0
+            document.documentElement.scrollTop=0
         })
     }
 }
+
+//Registrar user again
+re_pop_up_btn_confirm.addEventListener('click', () => {
+    reAssignGuest()
+})
+re_pop_up_btn_cancel.addEventListener('click', (e) => {
+    re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
+    re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
+})
+
+async function reAssignGuest() {
+    re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
+    re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
+    var reAssingData = {
+        data: data_atual,
+        hora: hora_atual,
+        name: row_cols_data[2],
+        documento: row_cols_data[3],
+        andar: row_cols_data[4],
+        tipo_visita: row_cols_data[5],
+        mês: month,
+        dia: date_day
+    }
+
+
+    /*                 reAssingData.data = ''
+        reAssingData.hora = ''
+        reAssingData.name = ''
+        reAssingData.documento = ''
+        reAssingData.andar = ''
+        reAssingData.tipo_visita = ''
+        reAssingData.mês = ''
+        reAssingData.dia = ''
+    */
+    /*     reAssingData.data = data_atual
+        reAssingData.hora = hora_atual
+        reAssingData.name = row_cols_data[2]
+        reAssingData.documento = row_cols_data[3]
+        reAssingData.andar = row_cols_data[4]
+        reAssingData.tipo_visita = row_cols_data[5]
+        reAssingData.mês = month
+        reAssingData.dia = date_day */
+
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reAssingData)
+    }
+    fetch('/ReAssignGuest', options)
+}
+
 
 //When called, clears cols data so a new search can be done
 var limpa_colunas_control = true

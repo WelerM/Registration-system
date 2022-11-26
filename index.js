@@ -49,7 +49,7 @@ app.get('/porDoc', (req, res) => {
 
 app.post('/ReAssignGuest',( req,res) =>{
     const data = req.body
-    res.json(data)
+   // res.json(data)
     database.insert(data)
 })
 
