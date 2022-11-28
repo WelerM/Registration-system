@@ -96,7 +96,8 @@ clear_inputs.addEventListener('click', () => {
 })
 
 btn_register.addEventListener('click', () => {
-    //Validação do formulário
+    alert('Negado, visualizando como visitante')
+   /*  //Validação do formulário
     if (input_nome.value && input_documento.value && input_andar.value != '') {
         cadastro_warning.classList.remove('cadastro-warning-show')
 
@@ -110,7 +111,7 @@ btn_register.addEventListener('click', () => {
         confirm_floor.textContent = input_andar.value
     } else {
         cadastro_warning.classList.add('cadastro-warning-show')
-    }
+    } */
 
 })
 
@@ -118,7 +119,7 @@ btn_register.addEventListener('click', () => {
 pop_up_btn_confirm.addEventListener('click', () => {
     pop_up_confirmation.classList.remove('confirm-registration-screen-on')
     pop_up_confirmation.classList.add('confirm-registration-screen')
-    saveToDatabase()
+    //saveToDatabase()
 })
 
 //Cancel btn
