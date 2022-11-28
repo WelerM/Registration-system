@@ -6,8 +6,8 @@ const input_documento = document.querySelector('#input-documento')
 const input_andar = document.querySelector('#input-andar')
 const tipo_visita = document.querySelectorAll('#tipo-visita')
 const cadastro_warning = document.querySelector('.cadastro-warning-hide')
-const btn_cadastrar = document.querySelector('#btn_cadastrar')
-const limpar_dados = document.querySelector('#limpar-dados')
+const btn_register = document.querySelector('#btn_cadastrar')
+const clear_inputs = document.querySelector('#limpar-dados')
 const pagina_cadastro = document.querySelector('.pagina-cadastro')
 const btn_buscar_visitante = document.querySelector('#btn-buscar-visitante')
 const icon_buscar_visitante = document.querySelector('.icon-buscar-visitante')
@@ -50,12 +50,12 @@ const re_pop_up_btn_confirm = document.querySelector('#re_btn_confirmar')
 const re_pop_up_btn_cancel = document.querySelector('#re_btn_cancelar')
 
 //======================= VARIÁVEIS PÁGINA DE CADASTRO  =========================
-const pesquisar_por_nome = document.querySelector('#pesquisar-por-nome')
-const pesquisar_por_documento = document.querySelector('#pesquisar-por-documento')
-const anterior = document.querySelector('#anterior')
-const proximo = document.querySelector('#proximo')
+const search_by_name = document.querySelector('#pesquisar-por-nome')
+const search_by_doc = document.querySelector('#pesquisar-por-documento')
+const previous_month = document.querySelector('#anterior')
+const next_month = document.querySelector('#proximo')
 const dias = document.querySelectorAll('.dia')
-const procurar = document.querySelector('#procurar')
+const search = document.querySelector('#procurar')
 const nada_encontrado = document.querySelector('.nada-encontrado')
 const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
 var mes_value = date_month_edited
@@ -80,7 +80,6 @@ var obj_re_entry = {
 
 //=============== HEADER ==============================================//
 const header_hour = document.querySelector('#header-hour')
-
 setInterval(() => {
     header_hour.textContent = `${date_hour}:${date_min}`
 }, 1000)
@@ -88,16 +87,15 @@ setInterval(() => {
 
 //=============== REGISTRATION INTERFACE ================================//
 
-
-
-limpar_dados.addEventListener('click', () => {
+//Clears input values
+clear_inputs.addEventListener('click', () => {
     input_nome.value = ''
     input_documento.value = ''
     input_andar.value = ''
 
 })
 
-btn_cadastrar.addEventListener('click', () => {
+btn_register.addEventListener('click', () => {
     //Validação do formulário
     if (input_nome.value && input_documento.value && input_andar.value != '') {
         cadastro_warning.classList.remove('cadastro-warning-show')
@@ -120,7 +118,7 @@ btn_cadastrar.addEventListener('click', () => {
 pop_up_btn_confirm.addEventListener('click', () => {
     pop_up_confirmation.classList.remove('confirm-registration-screen-on')
     pop_up_confirmation.classList.add('confirm-registration-screen')
-    postData()
+    saveToDatabase()
 })
 
 //Cancel btn
@@ -130,7 +128,7 @@ pop_up_btn_cancel.addEventListener('click', () => {
 })
 
 
-async function postData() {
+async function saveToDatabase() {
     const name = input_nome.value
     const document = input_documento.value
     const floor = input_andar.value
@@ -206,34 +204,35 @@ for (let i = 0; i < tipo_visita.length; i++) {
 //=============== SEARCH INTERFACE ================================//
 
 //HTML - 'Quick search'
-pesquisar_por_nome.addEventListener('keydown', (e) => {
+search_by_name.addEventListener('keydown', (e) => {
     nada_encontrado.style.display = 'none'
     if (e.key == "Backspace") {
         text = ''
-        pesquisar_por_nome.value = ''
+        search_by_name.value = ''
         limpaColunas()
     } else {
         text += e.key
         limpaColunas()// cada vez que digitar letra
-        pesquisaPorNome()
-        pesquisaPorNomeRetorno()
+        search_byName_saveData()
+        search_byName_dataReturn()
     }
 
 })
-pesquisar_por_documento.addEventListener('keydown', (e) => {
+search_by_doc.addEventListener('keydown', (e) => {
     nada_encontrado.style.display = 'none'
     if (e.key == "Backspace") {
         text = ''
-        pesquisar_por_documento.textContent = ''
+        search_by_doc.textContent = ''
         limpaColunas()
     } else {
         text += e.key
         limpaColunas()// cada vez que digitar letra
-        pesquisaPorDoc()
-        pesquisaPorDocRetorno()
+        searc_byDoc_saveData()
+        searc_byDoc_dataReturn()
     }
 })
-async function pesquisaPorNome() {
+
+async function search_byName_saveData() {
     let obj = { name: text }
     const options = {
         method: "POST",
@@ -244,12 +243,13 @@ async function pesquisaPorNome() {
     }
     fetch('/porNome', options)
 }
-async function pesquisaPorNomeRetorno() {
+async function search_byName_dataReturn() {
     const response = await fetch('/porNome')
     const data = await response.json()
     todosDias(data)
 }
-async function pesquisaPorDoc() {
+
+async function searc_byDoc_saveData() {
     let obj = { documento: text }
     const options = {
         method: "POST",
@@ -260,7 +260,7 @@ async function pesquisaPorDoc() {
     }
     fetch('/porDoc', options)
 }
-async function pesquisaPorDocRetorno() {
+async function searc_byDoc_dataReturn() {
     const response = await fetch('/porDoc')
     const data = await response.json()
     todosDias(data)
@@ -269,7 +269,7 @@ async function pesquisaPorDocRetorno() {
 //HTML - 'Serach by date ( Date Picker )'
 
 /*This function inserts the current month in the Date Picker*/
-function insereMesAtual() {
+function insertCurrentMonth() {
     if (date_month == 0) {
         month = "janeiro"
     } else if (date_month == 1) {
@@ -297,10 +297,10 @@ function insereMesAtual() {
     }
     dp_mes.textContent = month
 }
-insereMesAtual()
+insertCurrentMonth()
 
 // Date picker arrow previus month
-anterior.addEventListener('click', () => {
+previous_month.addEventListener('click', () => {
     if (m == 0) {
         m = m
         dp_mes.textContent = array_meses[m]
@@ -312,7 +312,7 @@ anterior.addEventListener('click', () => {
 })
 
 // Date picker arrow next month
-proximo.addEventListener('click', () => {
+next_month.addEventListener('click', () => {
     if (m == 11) {
         m = m
         dp_mes.textContent = array_meses[m]
@@ -324,7 +324,7 @@ proximo.addEventListener('click', () => {
 })
 
 //HTML - 'Search button'
-procurar.addEventListener('click', () => {
+search.addEventListener('click', () => {
     nada_encontrado.style.display = 'none'
     if (dia_selecionado == "todos dias") {
         async function pesquisaPorNomeRetorno() {
