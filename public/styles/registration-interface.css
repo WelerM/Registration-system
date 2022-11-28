@@ -111,20 +111,20 @@ span {
     width: 50%;
     padding: 5px 5px;
     font-size: 15px;
-    color: black;
     position: relative;
     right: 0px;
-    background-color: #1ABDA6;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.194);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.518);
     font-weight: bold;
     margin-top: 10px;
     letter-spacing: 0.5px;
 }   
 #limpar-dados:hover{
     cursor: pointer;
-    top: 1px;
+    background-color: rgba(255, 255, 255, 0.206);
+}
+.bi-trash{
+    color: white;
 }
 #btn_cadastrar {
     height: 40px;
