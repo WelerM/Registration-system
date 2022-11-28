@@ -227,8 +227,8 @@ search_by_doc.addEventListener('keydown', (e) => {
     } else {
         text += e.key
         limpaColunas()// cada vez que digitar letra
-        searc_byDoc_saveData()
-        searc_byDoc_dataReturn()
+        search_byDoc_saveData()
+        search_byDoc_dataReturn()
     }
 })
 
@@ -249,7 +249,7 @@ async function search_byName_dataReturn() {
     todosDias(data)
 }
 
-async function searc_byDoc_saveData() {
+async function search_byDoc_saveData() {
     let obj = { documento: text }
     const options = {
         method: "POST",
@@ -260,7 +260,7 @@ async function searc_byDoc_saveData() {
     }
     fetch('/porDoc', options)
 }
-async function searc_byDoc_dataReturn() {
+async function search_byDoc_dataReturn() {
     const response = await fetch('/porDoc')
     const data = await response.json()
     todosDias(data)
