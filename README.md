@@ -22,7 +22,4 @@ EN:
 In this project i'm developing a registration system for guests in buildings/business, so a better control over people visits
 will be provided
 
-
-
-
-
+You can check the development of this system here: https://sistemacadastro1.herokuapp.com/
