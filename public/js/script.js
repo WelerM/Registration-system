@@ -1,3 +1,16 @@
+//================= LOGIN INTERFACE ========================//
+const login_screen = document.querySelector('.login-screen')
+const login_container = document.querySelector('.login-container')
+const login_btn_guest = document.querySelector('.visitante')
+const login_btn_service = document.querySelector('.funcionario')
+const login_user = document.querySelector('#login_user').value
+const login_password = document.querySelector('#login_password').value
+const header_login_btn = document.querySelector('.header-login-container')
+const header_login_user_name = document.querySelector('.header_login_user_name')
+
+//===============MAIN INTERFACE ========================//
+const main_interface = document.querySelector('.main-interface')
+
 //===============REGISTRATION INTERFACE VARIABLES ========================//
 const main_container = document.querySelector('.main-container')
 const left_menu = document.querySelector('.left-menu')
@@ -7,6 +20,7 @@ const input_andar = document.querySelector('#input-andar')
 const tipo_visita = document.querySelectorAll('#tipo-visita')
 const cadastro_warning = document.querySelector('.cadastro-warning-hide')
 const btn_register = document.querySelector('#btn_cadastrar')
+const btn_unavailable = document.querySelector('.btn_unavailable')
 const clear_inputs = document.querySelector('#limpar-dados')
 const pagina_cadastro = document.querySelector('.pagina-cadastro')
 const btn_buscar_visitante = document.querySelector('#btn-buscar-visitante')
@@ -20,9 +34,6 @@ const confirm_doc = document.querySelector('#confirm_doc')
 const confirm_floor = document.querySelector('#confirm_floor')
 
 //===================  SEARCH INTERFACE VARIABLES ======================//
-
-
-//==================== COLUNAS =================================
 const colunas_container = document.querySelector('.colunas-container')
 const col = document.querySelectorAll('#col')
 const col_data = document.querySelector('.output-col-data')
@@ -77,6 +88,46 @@ var obj_re_entry = {
     mês: '',
     dia: ''
 }
+var guest_control = false
+
+
+//========== LOGIN INTERFACE ===============================//
+//Guest
+login_btn_guest.addEventListener('click', () => {
+    main_interface.style.display = 'flex'
+    login_screen.style.display = 'none'
+    login_container.classList.add('login-container-hide')
+    btn_register.style.display = 'none'
+    header_login_user_name.textContent = 'Logar'
+})
+//Service
+login_btn_service.addEventListener('click', () => {
+    const login_user = document.querySelector('#login_user').value
+    const login_password = document.querySelector('#login_password').value
+    if (login_user == 'User' && login_password == '123') {
+        main_interface.style.display = 'flex'
+        guest_control = true
+        btn_register.style.display='flex'
+        login_screen.style.display = 'none'
+        login_container.style.display = 'none'
+        btn_unavailable.style.display = 'none'
+        header_login_user_name.textContent = 'User'
+    } else {
+        main_interface.style.display = 'flex'
+        guest_control = false
+        btn_unavailable.classList.add('btn_unavailable')
+        alert('tente novamente')
+    }
+})
+//Header btn login 
+//Reloads page for a new login
+header_login_btn.addEventListener('click', () => {
+    window.location.reload()
+
+})
+
+
+
 
 //=============== HEADER ==============================================//
 const header_hour = document.querySelector('#header-hour')
@@ -94,10 +145,9 @@ clear_inputs.addEventListener('click', () => {
     input_andar.value = ''
 
 })
-
+//If inputs are filled, opens up screen for registration
 btn_register.addEventListener('click', () => {
-    alert('Negado, visualizando como visitante')
-   /*  //Validação do formulário
+    //Validação do formulário
     if (input_nome.value && input_documento.value && input_andar.value != '') {
         cadastro_warning.classList.remove('cadastro-warning-show')
 
@@ -111,7 +161,7 @@ btn_register.addEventListener('click', () => {
         confirm_floor.textContent = input_andar.value
     } else {
         cadastro_warning.classList.add('cadastro-warning-show')
-    } */
+    }
 
 })
 
@@ -119,7 +169,7 @@ btn_register.addEventListener('click', () => {
 pop_up_btn_confirm.addEventListener('click', () => {
     pop_up_confirmation.classList.remove('confirm-registration-screen-on')
     pop_up_confirmation.classList.add('confirm-registration-screen')
-    //saveToDatabase()
+    saveToDatabase()
 })
 
 //Cancel btn
@@ -128,7 +178,8 @@ pop_up_btn_cancel.addEventListener('click', () => {
     pop_up_confirmation.classList.add('confirm-registration-screen')
 })
 
-
+//This function creates an object with guest data
+//and saves it in the database
 async function saveToDatabase() {
     const name = input_nome.value
     const document = input_documento.value
@@ -203,8 +254,9 @@ for (let i = 0; i < tipo_visita.length; i++) {
 
 
 //=============== SEARCH INTERFACE ================================//
-
 //HTML - 'Quick search'
+
+//Quick search by name
 search_by_name.addEventListener('keydown', (e) => {
     nada_encontrado.style.display = 'none'
     if (e.key == "Backspace") {
@@ -219,20 +271,6 @@ search_by_name.addEventListener('keydown', (e) => {
     }
 
 })
-search_by_doc.addEventListener('keydown', (e) => {
-    nada_encontrado.style.display = 'none'
-    if (e.key == "Backspace") {
-        text = ''
-        search_by_doc.textContent = ''
-        limpaColunas()
-    } else {
-        text += e.key
-        limpaColunas()// cada vez que digitar letra
-        search_byDoc_saveData()
-        search_byDoc_dataReturn()
-    }
-})
-
 async function search_byName_saveData() {
     let obj = { name: text }
     const options = {
@@ -247,10 +285,24 @@ async function search_byName_saveData() {
 async function search_byName_dataReturn() {
     const response = await fetch('/porNome')
     const data = await response.json()
-    todosDias(data)
+    returnDataFromMonth(data)
 }
 
-async function search_byDoc_saveData() {
+//Quick search by doc
+search_by_doc.addEventListener('keydown', (e) => {
+    nada_encontrado.style.display = 'none'
+    if (e.key == "Backspace") {
+        text = ''
+        search_by_doc.textContent = ''
+        limpaColunas()
+    } else {
+        text += e.key
+        limpaColunas()// cada vez que digitar letra
+        searc_byDoc_saveData()
+        searc_byDoc_dataReturn()
+    }
+})
+async function searc_byDoc_saveData() {
     let obj = { documento: text }
     const options = {
         method: "POST",
@@ -261,13 +313,13 @@ async function search_byDoc_saveData() {
     }
     fetch('/porDoc', options)
 }
-async function search_byDoc_dataReturn() {
+async function searc_byDoc_dataReturn() {
     const response = await fetch('/porDoc')
     const data = await response.json()
-    todosDias(data)
+    returnDataFromMonth(data)
 }
 
-//HTML - 'Serach by date ( Date Picker )'
+//HTML - 'Search by date ( Date Picker )'
 
 /*This function inserts the current month in the Date Picker*/
 function insertCurrentMonth() {
@@ -327,12 +379,12 @@ next_month.addEventListener('click', () => {
 //HTML - 'Search button'
 search.addEventListener('click', () => {
     nada_encontrado.style.display = 'none'
-    if (dia_selecionado == "todos dias") {
+    if (dia_selecionado == "todos") {
         async function pesquisaPorNomeRetorno() {
             const response = await fetch('/porNome')
             const data = await response.json()
             limpaColunas()
-            todosDias(data)
+            returnDataFromMonth(data)
         }
         pesquisaPorNomeRetorno()
     }
@@ -348,7 +400,7 @@ search.addEventListener('click', () => {
             })
             console.log(data_filtrada);
             limpaColunas()
-            insereDadosColunas(data_filtrada)// ?
+            returnDataFromDay(data_filtrada)// ?
 
         }
         getJaneiro()
@@ -357,16 +409,16 @@ search.addEventListener('click', () => {
         async function getFevereiro() {
             const response = await fetch('/fevereiro')
             const data = await response.json()
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getFevereiro()
@@ -376,17 +428,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/marco')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getMarço()
@@ -396,17 +448,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/abril')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getAbril()
@@ -416,17 +468,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/maio')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getMaio()
@@ -436,17 +488,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/junho')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getJunho()
@@ -456,17 +508,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/julho')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getJulho()
@@ -476,17 +528,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/agosto')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getAgosto()
@@ -496,17 +548,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/setembro')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getSetembro()
@@ -516,17 +568,17 @@ search.addEventListener('click', () => {
             const response = await fetch('/outubro')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getOutubro()
@@ -536,17 +588,17 @@ search.addEventListener('click', () => {
             const response = await fetch('Novembro')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getNovembro()
@@ -556,24 +608,24 @@ search.addEventListener('click', () => {
             const response = await fetch('/dezembro')
             const data = await response.json()
 
-            if (dia_selecionado == "todos dias") {
+            if (dia_selecionado == "todos") {
                 //Limpa colunas e adiciona novos dados
                 limpaColunas()
-                todosDias(data)
+                returnDataFromMonth(data)
 
             } else {
                 const data_filtrada = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                insereDadosColunas(data_filtrada)
+                returnDataFromDay(data_filtrada)
             }
         }
         getDezembro()
     }
 })
 
-//HTML - This forloop runs through every day button
+//HTML - This forloop runs through every day buttons
 // and controls their style when user clicks over them
 var dia_selecionado = 0
 for (let i = 0; i < dias.length; i++) {
@@ -595,7 +647,8 @@ function clean_backgroundd() {
 }
 
 //When called, creates table and inserts data within it
-function insereDadosColunas(data_filtrada) {
+//from a single day of the month
+function returnDataFromDay(data_filtrada) {
     if (data_filtrada.length == 0) {
         nada_encontrado.style.display = 'flex'
     } else {
@@ -623,8 +676,10 @@ function insereDadosColunas(data_filtrada) {
             tipo_visita_div.classList.add('row-col')
             tipo_visita_div.style.width = '180px'
             cadastrar_novamente = document.createElement('div')
-            cadastrar_novamente.textContent = 'NOVO CADASTRO'
-            cadastrar_novamente.classList.add('cadastrar-novamente')
+            if (guest_control == true) {
+                cadastrar_novamente.textContent = 'NOVO CADASTRO'
+                cadastrar_novamente.classList.add('cadastrar-novamente')
+            }
             cadastrar_novamente.setAttribute('id', row_id)
             data_div.textContent = visitante_data
             hora_div.textContent = visitante_hora
@@ -644,34 +699,36 @@ function insereDadosColunas(data_filtrada) {
             limpa_colunas_control = false
         }
 
-        //Re entry of some chosen guest
+        //Green 'new register' btn on tables for re registration
         let row_total = document.querySelectorAll('.row')
         for (let i = 0; i < row_total.length; i++) {
             row_total[i].addEventListener('click', () => {
-                row_array_filter = []
-                row_cols_data = []
-                row_array_filter.push(row_total[i].childNodes)
-
-                for (data of row_array_filter[0]) {
-                    row_cols_data.push(data.innerHTML)
+                if (guest_control == true) {
+                    row_array_filter = []
+                    row_cols_data = []
+                    row_array_filter.push(row_total[i].childNodes)
+                    for (data of row_array_filter[0]) {
+                        row_cols_data.push(data.innerHTML)
+                    }
+                    //fills re registration screen with choosen values
+                    re_confirm_name.textContent = row_cols_data[2]
+                    re_confirm_doc.textContent = row_cols_data[3]
+                    re_confirm_floor.textContent = row_cols_data[4]
+                    //Shows re registration confirm screen
+                    re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
+                    re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
+                    document.body.scrollTop = 0
+                    document.documentElement.scrollTop = 0
                 }
-                //Shows re registration confirm screen
-                re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
-                re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
-                document.body.scrollTop=0
-                document.documentElement.scrollTop=0
             })
         }
-
-
     }
 }
 
 
-
-//When called, creates table and inserts entire date from
-//somo month choose
-function todosDias(data) {
+//When called, creates table and inserts data within it from
+//all days of a choosen month
+function returnDataFromMonth(data) {
     //async function para retornar banco completp com todos meses
     for (i of data) {
         row_id++//deletar
@@ -697,8 +754,10 @@ function todosDias(data) {
         tipo_visita_div.classList.add('row-col')
         tipo_visita_div.style.width = '180px'
         cadastrar_novamente = document.createElement('div')
-        cadastrar_novamente.textContent = 'NOVO CADASTRO'
-        cadastrar_novamente.classList.add('cadastrar-novamente')
+        if (guest_control == true) {
+            cadastrar_novamente.textContent = 'NOVO CADASTRO'
+            cadastrar_novamente.classList.add('cadastrar-novamente')
+        }
         cadastrar_novamente.setAttribute('id', row_id)
         data_div.textContent = visitante_data
         hora_div.textContent = visitante_hora
@@ -720,20 +779,27 @@ function todosDias(data) {
     let row_total = document.querySelectorAll('.row')
     for (let i = 0; i < row_total.length; i++) {
         row_total[i].addEventListener('click', () => {
-            row_array_filter = []
-            row_cols_data = []
-            row_array_filter.push(row_total[i].childNodes)
+            if (guest_control == true) {
+                row_array_filter = []
+                row_cols_data = []
+                row_array_filter.push(row_total[i].childNodes)
 
-            for (data of row_array_filter[0]) {
-                row_cols_data.push(data.innerHTML)
+                for (data of row_array_filter[0]) {
+                    row_cols_data.push(data.innerHTML)
+                }
+                //fills re registration screen with choosen values
+                re_confirm_name.textContent = row_cols_data[2]
+                re_confirm_doc.textContent = row_cols_data[3]
+                re_confirm_floor.textContent = row_cols_data[4]
+
+                //Shows re registration confirm screen
+                re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
+                re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
+                re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
+                re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
+                document.body.scrollTop = 0
+                document.documentElement.scrollTop = 0
             }
-            //Shows re registration confirm screen
-            re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
-            re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
-            re_pop_up_confirmation.classList.remove('confirm-re-registration-screen')
-            re_pop_up_confirmation.classList.add('confirm-re-registration-screen-on')
-            document.body.scrollTop=0
-            document.documentElement.scrollTop=0
         })
     }
 }
@@ -742,11 +808,15 @@ function todosDias(data) {
 re_pop_up_btn_confirm.addEventListener('click', () => {
     reAssignGuest()
 })
+//Cancels re registration
 re_pop_up_btn_cancel.addEventListener('click', (e) => {
     re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
     re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
 })
 
+// This function register again some user choosen in
+// the table. It's useful if someone is already registered
+// so they don't need to be registered again step by step
 async function reAssignGuest() {
     re_pop_up_confirmation.classList.remove('confirm-re-registration-screen-on')
     re_pop_up_confirmation.classList.add('confirm-re-registration-screen')
@@ -760,26 +830,6 @@ async function reAssignGuest() {
         mês: month,
         dia: date_day
     }
-
-
-    /*                 reAssingData.data = ''
-        reAssingData.hora = ''
-        reAssingData.name = ''
-        reAssingData.documento = ''
-        reAssingData.andar = ''
-        reAssingData.tipo_visita = ''
-        reAssingData.mês = ''
-        reAssingData.dia = ''
-    */
-    /*     reAssingData.data = data_atual
-        reAssingData.hora = hora_atual
-        reAssingData.name = row_cols_data[2]
-        reAssingData.documento = row_cols_data[3]
-        reAssingData.andar = row_cols_data[4]
-        reAssingData.tipo_visita = row_cols_data[5]
-        reAssingData.mês = month
-        reAssingData.dia = date_day */
-
     const options = {
         method: "POST",
         headers: {
@@ -789,7 +839,6 @@ async function reAssignGuest() {
     }
     fetch('/ReAssignGuest', options)
 }
-
 
 //When called, clears cols data so a new search can be done
 var limpa_colunas_control = true
