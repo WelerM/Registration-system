@@ -1,4 +1,7 @@
-const { response } = require('express')
+
+/* I'm still working here to both organize and lean it*/
+
+/* const { response } = require('express') */
 const express = require('express')
 const Datastore = require('nedb')
 const app = express()
@@ -8,10 +11,37 @@ app.use(express.json({ limit: '1mb' }))
 const database = new Datastore('database.db')
 database.loadDatabase()
 
+
 //Data query
 var dados = ''
 
-//Pesquisa rápida
+
+
+
+//Inserts data from inputs to database
+app.post('/insertToDatabase', (req, res) => {
+    const data = req.body
+    res.json(data)
+    database.insert(data)
+
+})
+
+/*Return data that matches with choosen day*/ 
+app.get('/dia', (req, res) => {
+    //Filtered data to be sent to front end
+    database.find({}, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)//sents data to frontend
+    })
+})
+
+
+
+
+//Quick search by name
 app.post('/porNome', (req, res) => {
     const obj = req.body
     const name = obj.name
@@ -29,6 +59,9 @@ app.get('/porNome', (req, res) => {
     res.json(dados)
 })
 
+
+
+//Quick search by doc
 app.post('/porDoc', (req, res) =>{
     const obj = req.body
     const doc = obj.documento
@@ -47,27 +80,72 @@ app.get('/porDoc', (req, res) => {
 })
 
 
+//====== STATISTIC DAY =======//
+var dayy = ''
+app.post('/statistic_day', (req,res) =>{
+    const obj = req.body
+    const day = obj.data
+    obj.data = new RegExp(day)
+    database.find(obj, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)
+        dayy = data
+    })
+})
+app.get('/statistic_day', (req, res) =>{
+    res.json(dayy)
+})
+
+
+//====== STATISTIC MONTH =======//
+var monthh = ''
+app.post('/statistic_month', (req,res) =>{
+    const obj = req.body
+    const month = obj.mês
+    obj.mês = new RegExp(month)
+    database.find(obj, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)
+        monthh= data
+    })
+})
+app.get('/statistic_month', (req, res) =>{
+        res.json(monthh)
+})
+
+
+//====== STATISTIC TOTAL =======//
+app.get('/statistic_total', (req,res) =>{
+    database.find({}, (err, data) => {
+        if (err) {
+            res.end()
+            return
+        }
+        res.json(data)
+    })
+})
+
+
+
+
+//====== REASSIGN GUEST =======//
 app.post('/ReAssignGuest',( req,res) =>{
     const data = req.body
    // res.json(data)
     database.insert(data)
 })
 
-//Exemplo:
-/* app.post('/api', (req, res) => {
-    const data = req.body
-    // console.log(req.body);
-    res.json(data)//Not using it results in Uncaught (in promise) TypeError: NetworkError when attempting to fetch resource.  
-    //console.log(data);//Logs in SERVIDOR
-    database.insert(data)
-
-}) */
 
 
 
 
-
-//Pesquisa por meses
+//======== SEARCH BY MONTH ==========//
 app.get('/janeiro', (req, res) => {
     database.find({ mês: "janeiro" }, (err, data) => {
         if (err) {
@@ -186,64 +264,3 @@ app.get('/dezembro', (req, res) => {
         res.json(data)
     })
 })
-
-
-
-
-
-
-
-
-
-app.get('/dia', (req, res) => {
-    //Filtered data to be sent to front end
-    database.find({}, (err, data) => {
-        if (err) {
-            res.end()
-            return
-        }
-        res.json(data)//sents data to frontend
-    })
-})
-
-
-//===============================================
-//===============================================
-//===============================================
-
-
-//Data entry (btn cadastrar)
-app.post('/api', (req, res) => {
-    const data = req.body
-    // console.log(req.body);
-    res.json(data)//Not using it results in Uncaught (in promise) TypeError: NetworkError when attempting to fetch resource.  
-    //console.log(data);//Logs in SERVIDOR
-    database.insert(data)
-
-})
-
-
-
-
-
-
-
-
-
-
-
-/* const obj = req.body
-const mes = obj.mês
-obj.mês = new RegExp(mes)
-
-database.find(obj, (err, data) => {
-    if (err) {
-        res.end()
-        return
-    }
-    res.json(data)
-    console.log(data);
-}) */
-
-
-// test.replace(/\"/g, "")

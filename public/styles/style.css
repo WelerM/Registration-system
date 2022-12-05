@@ -3,18 +3,22 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
 body {
     margin: auto;
     font-family: 'Helvetica';
     max-width: 1920px;
     height: 100vh;
-    background-color:#1f1f1f;
+    background-color: #1f1f1f;
     color: rgba(255, 255, 255, 0.685);
+    background-color: #141414;
 }
-input{
+
+input {
     color: white;
 }
-header{
+
+header {
     border-bottom: 2px solid rgba(173, 173, 173, 0.421);
     width: 100%;
     height: 50px;
@@ -22,49 +26,49 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 5px 25px;
+    background-color: #2D2D2D;
+    
 }
-.header-login-container{
+
+.header-login-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
     padding: 3px 10px;
     transition: 0.5s;
-    
 }
-.header-login-container:hover{
+.header-login-container:hover {
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.357);
     transition: 0.5s;
     background-color: rgba(255, 255, 255, 0.123);
 }
-.header-login-container> .bi-person-square{
+.header-login-container>.bi-person-square {
     font-size: 30px;
 }
-.header-adress-info > ul{
+.header-adress-info>ul {
     display: flex;
     gap: 15px;
     list-style: none;
     font-weight: bold;
 }
-.header-date-info > ul{
+.header-date-info>ul {
     display: flex;
     gap: 15px;
     list-style: none;
 }
-.header-date-info > ul>li{
+
+.header-date-info>ul>li {
     font-weight: bold;
 }
-
-
 
 
 
 /* ======= MAIN INTERFACE ====== */
-.main-interface{
+.main-interface {
     display: flex;
     width: 100%;
-    gap: 20px;
     margin: auto;
     display: none;
 }
@@ -74,7 +78,7 @@ header{
 
 
 /* ========= REGISTRATION INTERFACE ======= */
-.registration-interface{
+.registration-interface {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -86,7 +90,8 @@ header{
     border-right: 1px solid rgba(255, 255, 255, 0.406);
     height: 100vh;
 }
-.registration-interface > input{
+
+.registration-interface>input {
     width: 100%;
     height: 40px;
     background-color: rgba(0, 0, 0, 0.356);
@@ -99,7 +104,8 @@ header{
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.128);
 }
-.registration-interface > select {
+
+.registration-interface>select {
     width: 100%;
     height: 40px;
     background-color: rgba(0, 0, 0, 0.356);
@@ -112,27 +118,33 @@ header{
     color: rgba(255, 255, 255, 0.644);
     border: 1px solid rgba(255, 255, 255, 0.128);
 }
-select:hover{
+
+select:hover {
     cursor: pointer;
 }
-option{
+
+option {
     background-color: rgba(0, 0, 0, 0.824);
     border: none;
 }
+
 .registration-interface>h4 {
     text-align: center;
 }
+
 .registration-interface>p {
     margin-bottom: 5px;
     position: relative;
     left: 3px;
 }
+
 span {
     font-size: 18px;
 }
 
 
-.buscar-visitante, .ajuda {
+.buscar-visitante,
+.ajuda {
     background-color: goldenrod;
     height: 50px;
     width: 230px;
@@ -148,27 +160,33 @@ span {
     border: 1px solid black;
     border-radius: 5px;
 }
-.buscar-visitante:hover, .ajuda:hover {
+
+.buscar-visitante:hover,
+.ajuda:hover {
     cursor: pointer;
     background-color: rgb(180, 138, 32);
-} 
+}
+
 .buscar-visitante-on {
     left: 230px;
     transition: 0.7s;
     position: relative;
     width: 230px;
 }
-.cadastro-warning-hide{
+
+.cadastro-warning-hide {
     color: red;
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 0.5px;
     display: none;
 }
-.cadastro-warning-show{
+
+.cadastro-warning-show {
     display: block;
 }
-#limpar-dados{
+
+#limpar-dados {
     width: 50%;
     padding: 5px 5px;
     font-size: 13px;
@@ -180,14 +198,17 @@ span {
     margin-top: 10px;
     transition: 0.5s;
 
-}   
-#limpar-dados:hover{
+}
+
+#limpar-dados:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.206);
 }
-.bi-trash{
+
+.bi-trash {
     color: white;
 }
+
 #btn_cadastrar {
     height: 40px;
     width: 100%;
@@ -200,7 +221,7 @@ span {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.292);
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     line-height: 40px;
     transition: 0.5s;
 }
@@ -210,13 +231,16 @@ span {
     background-color: #158879;
     transition: 0.5s;
 }
-#btn_cadastrar > p {
+
+#btn_cadastrar>p {
     font-size: 20px;
 }
-.bi-arrow-down-short{
+
+.bi-arrow-down-short {
     font-size: 30px;
 }
-.btn_unavailable{
+
+.btn_unavailable {
     height: 40px;
     width: 100%;
     background-color: rgba(16, 113, 100, 0.342);
@@ -225,7 +249,7 @@ span {
     border-radius: 5px;
     font-size: 20px;
     position: relative;
-    margin-top:10px;
+    margin-top: 10px;
     border: 1px solid rgba(0, 0, 0, 0.194);
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.292);
 }
@@ -235,7 +259,7 @@ span {
 
 
 /* ========== MENU =========== */
-.left-menu{
+.left-menu {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -247,7 +271,7 @@ span {
     margin-top: 20px;
 }
 
-#btn-configuracoes{
+#btn-configuracoes {
     width: 100%;
     height: 35px;
     border-radius: 5px;
@@ -266,21 +290,23 @@ span {
     align-items: center;
     transition: 0.5s;
 }
-#btn-configuracoes > p{
+
+#btn-configuracoes>p {
     user-select: none;
 }
 
-.icon-configuracoes{
+.icon-configuracoes {
     width: 30px;
     height: 30px;
 }
-#btn-configuracoes:hover{
+
+#btn-configuracoes:hover {
     cursor: pointer;
     background-color: #158879;
     transition: 0.5s;
 }
 
-#btn-ajuda{
+#btn-ajuda {
     width: 100%;
     height: 35px;
     border-radius: 5px;
@@ -299,14 +325,16 @@ span {
     align-items: center;
     transition: 0.5s;
 }
-#btn-ajuda > p{
+
+#btn-ajuda>p {
     user-select: none;
 }
-.bi-patch-question{
+
+.bi-patch-question {
     font-size: 20px;
 }
 
-#btn-ajuda:hover{
+#btn-ajuda:hover {
     cursor: pointer;
     background-color: #158879;
     transition: 0.5s;
@@ -323,16 +351,16 @@ span {
     height: 100%;
     transition: 0.7s;
     padding-bottom: 50px;
-    padding-top: 40px;
 }
 
 .busca-options-left-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 40%;
+    width: 270px;
     align-items: center;
     padding: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #pesquisar-por-nome,
@@ -351,11 +379,17 @@ span {
     border: 1px solid rgba(255, 255, 255, 0.128);
 }
 
+
+
+
+/* ====== DATE PICKER ======= */
 .busca-options-right-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    width: auto;
 }
 
 .dia-container {
@@ -414,6 +448,7 @@ span {
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.291);
     border: 1px solid rgba(255, 255, 255, 0.245);
 }
+
 .dia:hover {
     color: white;
     background-color: #1ABDA6;
@@ -423,7 +458,6 @@ span {
 #todos-dias {
     letter-spacing: 0.5px;
     width: 67px;
-
 }
 
 #procurar {
@@ -441,11 +475,55 @@ span {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.346);
     transition: 0.5s;
 }
+
 #procurar:hover {
     cursor: pointer;
     background-color: #158879;
     transition: 0.5s;
 }
+
+
+
+/* ====== STATISTICS SCREEN ======= */
+.statistics-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    padding: 10px;
+}
+.statistics-container > h3 {
+    margin-bottom: 5px;
+}
+
+.statistics-inner-container {
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.statistics-inner-container > p {
+    font-size: 19px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding:10px;
+    padding-right: 20px;
+/*     background-color: #141414;  */
+    border: 1px solid rgba(255, 255, 255, 0.324);
+}
+
+.statistics-inner-container> p > * {
+    font-size: 19px;
+    color: rgb(27, 246, 27);
+}
+
+
+
+
 
 .output-filtro-container {
     padding-bottom: 0px;
@@ -453,7 +531,9 @@ span {
     gap: 5px;
     border-bottom: none;
     width: 950px;
+    background-color: #2D2D2D;
 }
+
 .output-filtro-container>h1 {
     font-size: 40px;
     margin-bottom: 20px;
@@ -463,6 +543,7 @@ span {
     height: 40px;
     width: 200px;
 }
+
 #proximo {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
@@ -473,9 +554,9 @@ span {
     background-color: rgba(63, 63, 63, 0.356);
     border: 1px solid rgba(255, 255, 255, 0.245);
 }
-#proximo:hover{
 
-}
+#proximo:hover {}
+
 .dia-container-mes>p {
     font-size: 30px;
 }
@@ -488,6 +569,7 @@ span {
     background-color: rgba(63, 63, 63, 0.356);
     border: 1px solid rgba(255, 255, 255, 0.245);
 }
+
 #proximo:hover,
 #anterior:hover {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.217);
@@ -495,6 +577,7 @@ span {
     transition: 0.5s;
     background-color: rgba(63, 63, 63, 0.356);
 }
+
 #select-dia {
     height: 30px;
     border: 1px solid black;
@@ -568,7 +651,7 @@ span {
     flex-direction: column;
     overflow: scroll;
     overflow-x: hidden;
-   
+
 }
 
 .colunas-container>* {
@@ -579,7 +662,7 @@ span {
 
 .colunas-container>*>* {
     border-bottom: 1px solid rgba(0, 0, 0, 0.582);
-    padding: 5px;
+    padding: 5px 0px;
     font-size: 15px;
     background-color: rgba(104, 104, 104, 0.331);
 }
@@ -588,10 +671,15 @@ span {
 .output-col-visita {
     width: 180px;
 }
+.col-title-blank{
+    width: 172px;
+
+    height:30px;
+}
 
 .row {
     display: flex;
-    width: 930px;
+    width: 950px;
 }
 
 .row:hover {
@@ -602,11 +690,13 @@ span {
     font-weight: bold;
 
 }
-.row-col{
+
+.row-col {
     width: 120px;
     border: 1px solid rgba(0, 0, 0, 0.568);
 }
-.cadastrar-novamente{
+
+.cadastrar-novamente {
     width: 150px;
     height: 30px;
     background-color: rgb(0, 160, 0);
@@ -619,11 +709,13 @@ span {
     transition: 0.2s;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.442);
 }
-.cadastrar-novamente:hover{
+
+.cadastrar-novamente:hover {
     cursor: pointer;
     background-color: green;
     transition: 0.2s;
 }
+
 .row:hover .cadastrar-novamente {
     display: flex;
 }
@@ -636,20 +728,20 @@ span {
 
 
 /* ======= CONFIRM REGISTRATION ======= */
-.confirm-registration-screen{
+.confirm-registration-screen {
     display: none;
 }
 
-.confirm-registration-screen-on{
+.confirm-registration-screen-on {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 600px;
     height: 250px;
     border: 10px;
-    background-color:#979797;
-    background-color:#4f4f4f;
+    background-color: #979797;
+    background-color: #4f4f4f;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.534);
     display: flex;
     flex-direction: column;
@@ -657,12 +749,14 @@ span {
     padding: 15px 20px;
     border-radius: 10px;
 }
-.confirm-registration-screen-on > h1{
+
+.confirm-registration-screen-on>h1 {
     text-align: center;
 }
-.confirm-registration-btns{
+
+.confirm-registration-btns {
     width: 100%;
-    height: 70px;  
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -671,12 +765,12 @@ span {
 
 #confirm_name,
 #confirm_doc,
-#confirm_floor{
+#confirm_floor {
     color: black;
     font-size: 20px;
 }
 
-#btn-confirmar{
+#btn-confirmar {
     background-color: rgb(0, 102, 0);
     color: white;
     font-size: 20px;
@@ -688,13 +782,15 @@ span {
     padding: 5px 10px;
     transition: 0.5s;
 }
-#btn-confirmar:hover{
+
+#btn-confirmar:hover {
     cursor: pointer;
     top: 1px;
     background-color: rgb(1, 80, 1);
     transition: 0.5s;
 }
-#btn-cancelar{
+
+#btn-cancelar {
     background-color: rgb(183, 1, 1);
     color: white;
     font-size: 20px;
@@ -707,7 +803,8 @@ span {
     transition: 0.5s;
 
 }
-#btn-cancelar:hover{
+
+#btn-cancelar:hover {
     cursor: pointer;
     top: 1px;
     background-color: rgb(115, 0, 0);
@@ -717,19 +814,20 @@ span {
 
 
 
-.confirm-re-registration-screen{
+.confirm-re-registration-screen {
     display: none;
 }
-.confirm-re-registration-screen-on{
+
+.confirm-re-registration-screen-on {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 600px;
     height: 250px;
     border: 10px;
-    background-color:#979797;
-    background-color:#4f4f4f;
+    background-color: #979797;
+    background-color: #4f4f4f;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.534);
     display: flex;
     flex-direction: column;
@@ -738,26 +836,27 @@ span {
     border-radius: 10px;
 }
 
-.confirm-re-registration-screen-on > h1{
+.confirm-re-registration-screen-on>h1 {
     text-align: center;
 }
 
 #re_confirm_name,
 #re_confirm_doc,
-#re_confirm_floor{
+#re_confirm_floor {
     color: black;
     font-size: 20px;
 }
-.re-confirm-registration-btns{
+
+.re-confirm-registration-btns {
     width: 100%;
-    height: 70px;  
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 50px;
 }
 
-#re_btn_confirmar{
+#re_btn_confirmar {
     background-color: rgb(0, 102, 0);
     color: white;
     font-size: 20px;
@@ -769,13 +868,15 @@ span {
     padding: 5px 10px;
     transition: 0.5s;
 }
-#re_btn_confirmar:hover{
+
+#re_btn_confirmar:hover {
     cursor: pointer;
     top: 1px;
     background-color: rgb(1, 80, 1);
     transition: 0.5s;
 }
-#re_btn_cancelar{
+
+#re_btn_cancelar {
     background-color: rgb(183, 1, 1);
     color: white;
     font-size: 20px;
@@ -788,13 +889,15 @@ span {
     transition: 0.5s;
 
 }
-#re_btn_cancelar:hover{
+
+#re_btn_cancelar:hover {
     cursor: pointer;
     top: 1px;
     background-color: rgb(115, 0, 0);
     transition: 0.5s;
 }
-.login-screen{
+
+.login-screen {
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -805,11 +908,13 @@ span {
     justify-content: center;
     flex-direction: column;
 }
-.login-screen > p {
+
+.login-screen>p {
     font-size: 19px;
     margin: 20px;
 }
-.login-container{
+
+.login-container {
     width: 600px;
     display: flex;
     flex-direction: column;
@@ -820,7 +925,8 @@ span {
     border-radius: 10px;
     align-items: center;
 }
-.login-btn-container{
+
+.login-btn-container {
     width: 100%;
     display: flex;
     align-items: center;
@@ -828,11 +934,12 @@ span {
     gap: 20px;
     flex-direction: column;
 }
-.bi-person-square{
+
+.bi-person-square {
     font-size: 50px;
 }
 
-.login-btn-container > .visitante{
+.login-btn-container>.visitante {
     background-color: #158879;
     height: 30px;
     width: 200px;
@@ -844,7 +951,8 @@ span {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.266);
     border-radius: 5px;
 }
-.login-btn-container > .funcionario{
+
+.login-btn-container>.funcionario {
     background-color: #158879;
     height: 50px;
     width: 200px;
@@ -856,23 +964,25 @@ span {
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.266);
 }
-.login-btn-container > .visitante:hover{
+
+.login-btn-container>.visitante:hover {
     cursor: pointer;
     position: relative;
     top: 1px;
     background-color: #126c60;
 }
 
-#btn_cadastrar_hide{
+#btn_cadastrar_hide {
     display: none;
 }
 
-.login-form{
+.login-form {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.login-form > input{
+
+.login-form>input {
     background-color: rgba(0, 0, 0, 0.429);
     padding-left: 10px;
     color: white;
@@ -884,13 +994,15 @@ span {
     border: 1px solid rgba(255, 255, 255, 0.254);
     border-radius: 2px;
 }
-.login-form > .funcionario:hover{
+
+.login-form>.funcionario:hover {
     cursor: pointer;
     position: relative;
     top: 1px;
     background-color: #126c60;
 }
-.login-form > .funcionario{
+
+.login-form>.funcionario {
     background-color: #158879;
     height: 30px;
     width: 200px;

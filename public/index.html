@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <header>
 
+    <header>
         <div class="header-login-container">
             <i class="bi bi-person-square"></i>
             <h4 class="header_login_user_name">Logar</h4>
@@ -28,11 +28,9 @@
                 <li>Hora: <span id="header-hour"></span></li>
             </ul>
         </div>
-
     </header>
 
     <div class="main-interface">
-
         <div class="registration-interface">
             <h4>CADASTRAR NOVO VISITANTE</h3>
                 <p>Nome</p>
@@ -54,19 +52,6 @@
                 <div id="limpar-dados"><i class="bi bi-trash"></i> LIMPAR DADOS</div>
                 <button id="btn_cadastrar"><p>CADASTRAR</p><i class="bi bi-arrow-down-short"></i></button>
                 <button class="btn_unavailable"><p>Indisponível para visitantes</p></button>
-              
-<!--                 <div class="left-menu">
-                    <h4>MENU</h4>
-                    <div id="btn-configuracoes">
-                        <img class="icon-configuracoes" src="./img/gear.png" alt="">
-                        <p>CONFIGURAÇÕES</p>
-                    </div>
-                    <div id="btn-ajuda">
-                         <i class="bi bi-patch-question"></i>
-                         AJUDA
-                    </div>
-                </div>  -->
-
         </div>
 
         <div class="pagina-busca-container">
@@ -76,6 +61,7 @@
                     <input id="pesquisar-por-nome" type="text" placeholder="Pesquisar por nome">
                     <input id="pesquisar-por-documento" type="text" placeholder="Pesquisar por documento">
                 </div>
+
                 <div class="busca-options-right-container">
                     <h3>pesquisa por data</h3>
                     <div class="dia-container">
@@ -121,6 +107,15 @@
                     </div>
                     <button id="procurar"><i class="bi bi-search"></i> PROCURAR</button>
                 </div>
+
+                <div class="statistics-container">
+                    <h3>estatisticas de cadastros</h3>
+                    <div class="statistics-inner-container">
+                        <p class="statistic_line">Hoje:<span id="statistic_today"></span></p>
+                        <p class="statistic_line">Neste mês:<span id="statistic_month"></span></p>
+                        <p class="statistic_line">Total::<span id="statistic_total"></span></p>
+                    </div>
+                </div>
             </div>
 
             <div class="output-screen">
@@ -132,6 +127,7 @@
                     <div class="col-title">documento</div>
                     <div class="col-title">andar</div>
                     <div class="col-title-visita">tipo de visita</div>
+                    <div class="col-title-blank"></div>
                 </div>
 
                 <div class="nada-encontrado">
@@ -142,6 +138,7 @@
                 <div class="colunas-container">
                 </div>
             </div>
+
         </div>
     </div>
 

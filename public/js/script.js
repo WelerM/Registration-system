@@ -1,4 +1,4 @@
-//================= LOGIN INTERFACE ========================//
+//================= LOGIN INTERFACE VARIABLES========================//
 const login_screen = document.querySelector('.login-screen')
 const login_container = document.querySelector('.login-container')
 const login_btn_guest = document.querySelector('.visitante')
@@ -34,6 +34,17 @@ const confirm_doc = document.querySelector('#confirm_doc')
 const confirm_floor = document.querySelector('#confirm_floor')
 
 //===================  SEARCH INTERFACE VARIABLES ======================//
+//'QUICK SEARCH'
+const search_by_name = document.querySelector('#pesquisar-por-nome')
+const search_by_doc = document.querySelector('#pesquisar-por-documento')
+const previous_month = document.querySelector('#anterior')
+const next_month = document.querySelector('#proximo')
+const dias = document.querySelectorAll('.dia')
+const search = document.querySelector('#procurar')
+const nada_encontrado = document.querySelector('.nada-encontrado')
+const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+
+//'TABLE TO BE SHOWN WITH DATA'
 const colunas_container = document.querySelector('.colunas-container')
 const col = document.querySelectorAll('#col')
 const col_data = document.querySelector('.output-col-data')
@@ -59,16 +70,12 @@ const re_confirm_doc = document.querySelector('#re_confirm_doc')
 const re_confirm_floor = document.querySelector('#re_confirm_floor')
 const re_pop_up_btn_confirm = document.querySelector('#re_btn_confirmar')
 const re_pop_up_btn_cancel = document.querySelector('#re_btn_cancelar')
+//STATISTIC INTERFACE variables
+const statistic_today = document.querySelector('#statistic_today')
+const statistic_month = document.querySelector('#statistic_month')
+const statistic_total = document.querySelector('#statistic_total')
+const statistic_line = document.querySelectorAll('.statistic_line')
 
-//======================= VARIÁVEIS PÁGINA DE CADASTRO  =========================
-const search_by_name = document.querySelector('#pesquisar-por-nome')
-const search_by_doc = document.querySelector('#pesquisar-por-documento')
-const previous_month = document.querySelector('#anterior')
-const next_month = document.querySelector('#proximo')
-const dias = document.querySelectorAll('.dia')
-const search = document.querySelector('#procurar')
-const nada_encontrado = document.querySelector('.nada-encontrado')
-const array_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
 var mes_value = date_month_edited
 var m = date_month
 var text = ''
@@ -107,7 +114,7 @@ login_btn_service.addEventListener('click', () => {
     if (login_user == 'User' && login_password == '123') {
         main_interface.style.display = 'flex'
         guest_control = true
-        btn_register.style.display='flex'
+        btn_register.style.display = 'flex'
         login_screen.style.display = 'none'
         login_container.style.display = 'none'
         btn_unavailable.style.display = 'none'
@@ -164,7 +171,6 @@ btn_register.addEventListener('click', () => {
     }
 
 })
-
 //Confirm btn
 pop_up_btn_confirm.addEventListener('click', () => {
     pop_up_confirmation.classList.remove('confirm-registration-screen-on')
@@ -230,7 +236,9 @@ async function saveToDatabase() {
         },
         body: JSON.stringify(data)
     }
-    fetch('/api', options)
+    fetch('/insertToDatabase', options)
+
+    setTimeout(reloadStatistics, 1000)
 }
 
 //HTML - select 'tipo de visita'
@@ -298,11 +306,12 @@ search_by_doc.addEventListener('keydown', (e) => {
     } else {
         text += e.key
         limpaColunas()// cada vez que digitar letra
-        searc_byDoc_saveData()
-        searc_byDoc_dataReturn()
+        search_byDoc_saveData()
+        search_byDoc_dataReturn()
     }
 })
-async function searc_byDoc_saveData() {
+//Sends
+async function search_byDoc_saveData() {
     let obj = { documento: text }
     const options = {
         method: "POST",
@@ -313,7 +322,8 @@ async function searc_byDoc_saveData() {
     }
     fetch('/porDoc', options)
 }
-async function searc_byDoc_dataReturn() {
+//Returns
+async function search_byDoc_dataReturn() {
     const response = await fetch('/porDoc')
     const data = await response.json()
     returnDataFromMonth(data)
@@ -395,12 +405,12 @@ search.addEventListener('click', () => {
             const response = await fetch('/janeiro')
             const data = await response.json()
 
-            const data_filtrada = data.filter(x => {
+            const filtered_data = data.filter(x => {
                 return x.dia == dia_selecionado
             })
-            console.log(data_filtrada);
+            console.log(filtered_data);
             limpaColunas()
-            returnDataFromDay(data_filtrada)// ?
+            returnDataFromDay(filtered_data)// ?
 
         }
         getJaneiro()
@@ -414,11 +424,11 @@ search.addEventListener('click', () => {
                 limpaColunas()
                 returnDataFromMonth(data)
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getFevereiro()
@@ -434,11 +444,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getMarço()
@@ -454,11 +464,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getAbril()
@@ -474,11 +484,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getMaio()
@@ -494,11 +504,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getJunho()
@@ -514,11 +524,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getJulho()
@@ -534,11 +544,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getAgosto()
@@ -554,11 +564,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getSetembro()
@@ -574,11 +584,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getOutubro()
@@ -594,11 +604,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getNovembro()
@@ -614,11 +624,11 @@ search.addEventListener('click', () => {
                 returnDataFromMonth(data)
 
             } else {
-                const data_filtrada = data.filter(x => {
+                const filtered_data = data.filter(x => {
                     return x.dia == dia_selecionado
                 })
                 limpaColunas()
-                returnDataFromDay(data_filtrada)
+                returnDataFromDay(filtered_data)
             }
         }
         getDezembro()
@@ -646,14 +656,104 @@ function clean_backgroundd() {
     }
 }
 
+
+
+
+//================== STATISTIC INTERFACE =======================//
+//HTML - 'Statistics screen'
+
+//Filters and fetches entries of current month in the database
+//By sending to the server an object
+//that matches what i'm looking for
+async function dayEntriesRequest() {
+    let obj = { data: `${date_day}/${date_month_edited}/${date_year}` }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }
+    fetch('/statistic_day', options)
+
+    //Returns data from server
+    async function returnDayEntries() {
+        const response = await fetch('/statistic_day')
+        const data = await response.json()
+        const entriesToday = data.length
+        statistic_today.textContent = entriesToday
+    }
+    returnDayEntries()
+}
+
+//Filters and fetches entries of current month in the database
+async function monthEntriesRequest() {
+    let obj = { mês: array_meses[m] }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }
+    fetch('/statistic_month', options)
+    async function returnMonthEntries() {
+        const response = await fetch('/statistic_month')
+        const data = await response.json()
+        const month_entries = data.length
+        statistic_month.textContent = month_entries
+    }
+    returnMonthEntries()
+}
+
+//Fetches total entries in the database
+async function returnTotalMonth() {
+    const response = await fetch('/statistic_total')
+    const data = await response.json()
+    const all_entries = data.length
+    statistic_total.textContent = all_entries
+}
+
+//Loads statistics in the inicialization
+function loadStatistics() {
+    setTimeout(() => {
+        dayEntriesRequest()
+        monthEntriesRequest()
+        returnTotalMonth()
+    }, 1000)
+
+}
+loadStatistics()
+
+//Provides animation to statistic screen when succesful registration
+function reloadStatistics() {
+    for (let i = 0; i < statistic_line.length; i++) {
+        statistic_line[i].style.backgroundColor = 'green'
+        setTimeout(() => {
+            statistic_line[i].style.backgroundColor = 'transparent'
+            setTimeout(() => {
+                dayEntriesRequest()
+                monthEntriesRequest()
+                returnTotalMonth()
+            }, 500)
+        }, 1300)
+    }
+
+}
+
+
+
+
+
+
 //When called, creates table and inserts data within it
 //from a single day of the month
-function returnDataFromDay(data_filtrada) {
-    if (data_filtrada.length == 0) {
+function returnDataFromDay(filtered_data) {
+    if (filtered_data.length == 0) {
         nada_encontrado.style.display = 'flex'
     } else {
         nada_encontrado.style.display = 'none'
-        for (i of data_filtrada) {
+        for (i of filtered_data) {
             const visitante_data = i.data
             const visitante_hora = i.hora
             const visitante_nome = i.name
@@ -838,6 +938,7 @@ async function reAssignGuest() {
         body: JSON.stringify(reAssingData)
     }
     fetch('/ReAssignGuest', options)
+    setTimeout(reloadStatistics, 1000)
 }
 
 //When called, clears cols data so a new search can be done
