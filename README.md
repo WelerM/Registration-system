@@ -1,12 +1,12 @@
-# Sistema de Cadastro - Em desenvolvimento
-Registration system - in development
+# in development - Em desenvolvimento
 
-Tecnologias / Technologies: 
- JavaScript /
- NodeJS / Express /
- Nedb (database) /
- Bootstrap /
- HTML / CSS
+ Technologies / Tecnologias:
+ 
+ JavaScript |
+ NodeJS / Express |
+ Nedb (database) |
+ Bootstrap |
+ HTML | CSS
 
 ![Screenshot_20221130_021515](https://user-images.githubusercontent.com/99507279/204864414-9482a4ff-0fcc-4a2a-81be-34138213179f.png)
 
