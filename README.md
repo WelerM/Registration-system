@@ -1,4 +1,4 @@
-# in development - Em desenvolvimento
+# In development - Em desenvolvimento
 
  Technologies / Tecnologias:
  
