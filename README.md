@@ -13,14 +13,14 @@
 
 
 
-Descrição / Description:
-
-PT_BR:
-Neste projeto estou desenvolvendo um sistema para cadastro de visitantes para empresas/negócios 
-com intuito de ter um melhor controle de acesso de visitantes.
+Description / Descrição
 
 EN:
 In this project i'm developing a registration system for guests in buildings/business, so a better control over people visits
 will be provided
+
+PT_BR:
+Neste projeto estou desenvolvendo um sistema para cadastro de visitantes para empresas/negócios 
+com intuito de ter um melhor controle de acesso de visitantes.
 
 
